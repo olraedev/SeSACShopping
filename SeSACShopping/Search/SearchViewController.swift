@@ -17,6 +17,8 @@ class SearchViewController: UIViewController, ConfigIdentifier {
 
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var emptyView: UIView!
+    @IBOutlet var recLabel: UILabel!
+    @IBOutlet var recCollectionView: UICollectionView!
     @IBOutlet var emptyImageView: UIImageView!
     @IBOutlet var emptyLabel: UILabel!
     @IBOutlet var recentView: UIView!
@@ -25,6 +27,7 @@ class SearchViewController: UIViewController, ConfigIdentifier {
     @IBOutlet var recentTableView: UITableView!
     
     var searchList: [String] = UserDefaultsManager.shared.getSearchList()
+    var recList: [String] = Recommendation().returnShuffledList
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,37 +37,26 @@ class SearchViewController: UIViewController, ConfigIdentifier {
         designOutlets()
         configTableView()
         changeView()
+        configCollectionView()
+        configCollectionViewLayout()
     }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // 값이 없으면 검색 못하게...
         if searchBar.text == "" {
-            
+            view.endEditing(true)
+            searchBar.text = ""
         } else {
             guard let text = searchBar.text else {
                 return
             }
-            
-            // 이미 최근 검색어 리스트에 찾고자 하는 검색어가 있으면, 원래 리스트에 있던 것을 삭제
-            if let idx = searchList.firstIndex(of: text) {
-                searchList.remove(at: idx)
-            }
-            
-            searchList.insert(text, at: 0)
+            checkExists(text: text)
             syncSearchList()
-            
-            // 검색 결과 화면으로 이동
-            let sb = UIStoryboard(name: ResultViewController.sbIdentifier, bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: ResultViewController.identifier) as! ResultViewController
-            
-            vc.keyword = searchBar.text!
-            navigationController?.pushViewController(vc, animated: true)
+            pushResultViewController(keyword: searchBar.text!)
+            view.endEditing(true)
+            searchBar.text = ""
         }
-        
-        searchBar.text = ""
-        view.endEditing(true)
     }
 }
 
@@ -75,8 +67,14 @@ extension SearchViewController: DesignViews {
         searchBar.tintColor = ColorDesign.text.fill
         searchBar.searchTextField.textColor = ColorDesign.text.fill
         
-        
         emptyView.backgroundColor = ColorDesign.bgc.fill
+        
+        recLabel.text = "주인장의 추천 검색어"
+        recLabel.textAlignment = .center
+        recLabel.font = FontDesign.big.light
+        recLabel.textColor = ColorDesign.text.fill
+        
+        recCollectionView.backgroundColor = ColorDesign.clear.fill
         
         emptyImageView.image = .empty
         
@@ -130,11 +128,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let sb = UIStoryboard(name: ResultViewController.sbIdentifier, bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: ResultViewController.identifier) as! ResultViewController
-        
-        vc.keyword = searchList[indexPath.row]
-        navigationController?.pushViewController(vc, animated: true)
+        pushResultViewController(keyword: searchList[indexPath.row])
     }
 }
 
@@ -147,6 +141,12 @@ extension SearchViewController: ConfigButtonClicked {
     @objc func cellEraseButtonClicked(_ sender: UIButton) {
         searchList.remove(at: sender.tag)
         syncSearchList()
+    }
+    
+    @objc func recButtonClicked(_ sender: UIButton) {
+        checkExists(text: recList[sender.tag])
+        syncSearchList()
+        pushResultViewController(keyword: recList[sender.tag])
     }
 }
 
@@ -161,5 +161,58 @@ extension SearchViewController: MyDefinedFunctions {
         searchList = UserDefaultsManager.shared.getSearchList()
         recentTableView.reloadData()
         changeView()
+    }
+    
+    func pushResultViewController(keyword: String) {
+        // 검색 결과 화면으로 이동
+        let sb = UIStoryboard(name: ResultViewController.sbIdentifier, bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: ResultViewController.identifier) as! ResultViewController
+        
+        vc.keyword = keyword
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func checkExists(text: String) {
+        if let idx = searchList.firstIndex(of: text) {
+            searchList.remove(at: idx)
+        }
+        
+        searchList.insert(text, at: 0)
+    }
+}
+
+extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func configCollectionView() {
+        recCollectionView.dataSource = self
+        recCollectionView.delegate = self
+        
+        let xib = UINib(nibName: RecCollectionViewCell.identifier, bundle: nil)
+        recCollectionView.register(xib, forCellWithReuseIdentifier: RecCollectionViewCell.identifier)
+    }
+    
+    func configCollectionViewLayout() {
+        let layout = UICollectionViewFlowLayout()
+        let space: CGFloat = 8
+        
+        layout.itemSize = CGSize(width: 60, height: 54)
+        layout.sectionInset = UIEdgeInsets(top: space, left: space, bottom: space, right: space)
+//        layout.minimumLineSpacing = space
+        layout.minimumInteritemSpacing = 3
+        layout.scrollDirection = .horizontal
+        
+        recCollectionView.collectionViewLayout = layout
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return recList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = recCollectionView.dequeueReusableCell(withReuseIdentifier: RecCollectionViewCell.identifier, for: indexPath) as! RecCollectionViewCell
+        
+        cell.configureCell(recList[indexPath.item], row: indexPath.item)
+        cell.recButton.addTarget(self, action: #selector(recButtonClicked), for: .touchUpInside)
+        
+        return cell
     }
 }

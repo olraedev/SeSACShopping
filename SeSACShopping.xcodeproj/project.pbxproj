@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		EC12127B2B5F771C00F6221D /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = EC12127A2B5F771C00F6221D /* Toast */; };
+		EC1212912B5FE25A00F6221D /* RecCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC12128F2B5FE25A00F6221D /* RecCollectionViewCell.swift */; };
+		EC1212922B5FE25A00F6221D /* RecCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC1212902B5FE25A00F6221D /* RecCollectionViewCell.xib */; };
+		EC1212942B5FE34F00F6221D /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1212932B5FE34F00F6221D /* Recommendation.swift */; };
 		EC2F1ACD2B5954FF004221A8 /* Nickname.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC2F1ACC2B5954FF004221A8 /* Nickname.storyboard */; };
 		EC2F1AD22B595916004221A8 /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2F1AD12B595916004221A8 /* NicknameViewController.swift */; };
 		EC2F1AD52B596539004221A8 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2F1AD42B596539004221A8 /* UserDefaultsManager.swift */; };
@@ -56,6 +59,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC12128F2B5FE25A00F6221D /* RecCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecCollectionViewCell.swift; sourceTree = "<group>"; };
+		EC1212902B5FE25A00F6221D /* RecCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecCollectionViewCell.xib; sourceTree = "<group>"; };
+		EC1212932B5FE34F00F6221D /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
 		EC2F1ACC2B5954FF004221A8 /* Nickname.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Nickname.storyboard; sourceTree = "<group>"; };
 		EC2F1AD12B595916004221A8 /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		EC2F1AD42B596539004221A8 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -174,6 +180,9 @@
 				EC4277002B5AC5DB00ADADBD /* SearchViewController.swift */,
 				EC4277022B5AD96200ADADBD /* SearchTableViewCell.swift */,
 				EC4277032B5AD96200ADADBD /* SearchTableViewCell.xib */,
+				EC12128F2B5FE25A00F6221D /* RecCollectionViewCell.swift */,
+				EC1212902B5FE25A00F6221D /* RecCollectionViewCell.xib */,
+				EC1212932B5FE34F00F6221D /* Recommendation.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -367,6 +376,7 @@
 				EC6DF0DE2B5938A600F7649A /* Assets.xcassets in Resources */,
 				EC4277082B5B95C200ADADBD /* Result.storyboard in Resources */,
 				EC6DF0DC2B5938A400F7649A /* Main.storyboard in Resources */,
+				EC1212922B5FE25A00F6221D /* RecCollectionViewCell.xib in Resources */,
 				ECF908122B5D3C2B00C5C2C7 /* SettingTableViewCell.xib in Resources */,
 				ECF9080E2B5D3C1E00C5C2C7 /* InfoTableViewCell.xib in Resources */,
 				EC4276FF2B5AC40A00ADADBD /* Setting.storyboard in Resources */,
@@ -387,6 +397,7 @@
 				EC6DF0F02B593CE700F7649A /* FontDesign.swift in Sources */,
 				ECF9080D2B5D3C1E00C5C2C7 /* InfoTableViewCell.swift in Sources */,
 				EC6DF0F22B593CF300F7649A /* ColorDesign.swift in Sources */,
+				EC1212942B5FE34F00F6221D /* Recommendation.swift in Sources */,
 				ECF908162B5D3E9600C5C2C7 /* Setting.swift in Sources */,
 				EC6DF0F92B5948C200F7649A /* OnboardViewController.swift in Sources */,
 				EC6DF0D92B5938A400F7649A /* ViewController.swift in Sources */,
@@ -400,6 +411,7 @@
 				EC4277012B5AC5DB00ADADBD /* SearchViewController.swift in Sources */,
 				ECF9080A2B5D30BE00C5C2C7 /* DetailViewController.swift in Sources */,
 				EC3B0CA32B5CFBC50000E0CA /* APIManager.swift in Sources */,
+				EC1212912B5FE25A00F6221D /* RecCollectionViewCell.swift in Sources */,
 				EC4277042B5AD96200ADADBD /* SearchTableViewCell.swift in Sources */,
 				EC2F1AD22B595916004221A8 /* NicknameViewController.swift in Sources */,
 				EC4277162B5B9DDB00ADADBD /* Sort.swift in Sources */,
