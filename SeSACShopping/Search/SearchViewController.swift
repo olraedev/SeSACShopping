@@ -41,17 +41,13 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // 값이 없으면 검색 못하게...
         if searchBar.text == "" {
-            let alert = UIAlertController(title: "검색", message: "검색어를 입력해주세요.", preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "취소", style: .cancel)
             
-            alert.addAction(cancel)
-            
-            present(alert, animated: true)
         } else {
             guard let text = searchBar.text else {
                 return
             }
             
+            // 이미 최근 검색어 리스트에 찾고자 하는 검색어가 있으면, 원래 리스트에 있던 것을 삭제
             if let idx = searchList.firstIndex(of: text) {
                 searchList.remove(at: idx)
             }
@@ -65,20 +61,20 @@ extension SearchViewController: UISearchBarDelegate {
             
             vc.keyword = searchBar.text!
             navigationController?.pushViewController(vc, animated: true)
-            
-            searchBar.text = ""
         }
         
-        view.endEditing(false)
+        searchBar.text = ""
+        view.endEditing(true)
     }
 }
 
 extension SearchViewController: DesignViews {
     func designOutlets() {
-        searchBar.placeholder = "브랜드, 상품, 프로필, 태그 등"
+        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "브랜드, 상품, 프로필, 태그 등", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.cgColor])
         searchBar.barTintColor = ColorDesign.bgc.fill
         searchBar.tintColor = ColorDesign.text.fill
         searchBar.searchTextField.textColor = ColorDesign.text.fill
+        
         
         emptyView.backgroundColor = ColorDesign.bgc.fill
         

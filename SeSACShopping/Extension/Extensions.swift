@@ -36,6 +36,15 @@ extension UIViewController {
         return text
     }
     
+    func presentAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel)
+        
+        alert.addAction(cancelButton)
+        
+        self.present(alert, animated: true)
+    }
+    
     func presentAlert(title: String, message: String, button: String, completionHandler: @escaping () -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let button = UIAlertAction(title: button, style: .default) { action in
