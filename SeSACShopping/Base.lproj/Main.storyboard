@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dwr-US-aRt">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search-->
+        <scene sceneID="2dr-Zt-M7T">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Search" id="tFc-A2-Icz" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="RKb-uu-lJ2"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MwZ-fC-GyR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1582" y="-135"/>
+        </scene>
+        <!--Setting-->
+        <scene sceneID="NzY-dY-OL8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Setting" id="y8i-xn-Q7x" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="VBI-rG-9tE"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lxB-S9-eEy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1583" y="505"/>
+        </scene>
+        <!--검색-->
+        <scene sceneID="oBW-mu-Env">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vsS-8K-7Kg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="검색" image="magnifyingglass" catalog="system" id="l0t-ef-87r"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZHi-50-qpQ">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tFc-A2-Icz" kind="relationship" relationship="rootViewController" id="B96-0F-ws2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W6G-9E-fSK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="989" y="-134"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Frh-DU-72h">
+            <objects>
+                <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="Dwr-US-aRt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vVn-Sd-zfS">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.2847774327" green="0.86296790840000004" blue="0.57274681329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vsS-8K-7Kg" kind="relationship" relationship="viewControllers" id="hrM-mO-OUO"/>
+                        <segue destination="AcJ-8V-o3P" kind="relationship" relationship="viewControllers" id="nZc-h7-lUu"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0UW-w7-J3U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-76" y="158"/>
+        </scene>
+        <!--설정-->
+        <scene sceneID="5YY-Yb-xSD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AcJ-8V-o3P" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="설정" image="person" catalog="system" id="b1u-Lg-inu"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hch-FD-wqZ">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="y8i-xn-Q7x" kind="relationship" relationship="rootViewController" id="uRk-Mf-H64"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OgN-x1-dbA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="989" y="505"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="person" catalog="system" width="128" height="121"/>
+    </resources>
+</document>
