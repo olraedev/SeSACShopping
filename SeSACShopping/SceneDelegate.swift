@@ -15,6 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         
+        localNotificationToUser()
+        
         UINavigationBar.appearance().tintColor = ColorDesign.text.fill
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
         
@@ -68,3 +70,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+extension SceneDelegate {
+    func localNotificationToUser() {
+        let badge = UserDefaultsManager.shared.getBageCount() + 1
+        let content = UNMutableNotificationContent()
+        content.title = "까먹으셨죠?"
+        content.body = "하루에 한 번정도는 쇼핑 리스트 관리해주셔야죠!"
+        content.badge = (badge) as NSNumber
+        
+        UserDefaultsManager.shared.setBageCount(value: badge)
+        
+        var component = DateComponents()
+        component.hour = 20
+        component.minute = 00
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: true)
+        let request = UNNotificationRequest(identifier: "\(Date())", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
+    }
+}
