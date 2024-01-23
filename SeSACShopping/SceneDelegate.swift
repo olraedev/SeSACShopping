@@ -49,6 +49,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -72,13 +75,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate {
     func localNotificationToUser() {
-        let badge = UserDefaultsManager.shared.getBageCount() + 1
         let content = UNMutableNotificationContent()
         content.title = "까먹으셨죠?"
-        content.body = "하루에 한 번정도는 쇼핑 리스트 관리해주셔야죠!"
-        content.badge = (badge) as NSNumber
-        
-        UserDefaultsManager.shared.setBageCount(value: badge)
+        content.body = "하루에 한번 쇼핑 리스트 관리해주셔야죠!"
+        content.badge = 1
         
         var component = DateComponents()
         component.hour = 20
