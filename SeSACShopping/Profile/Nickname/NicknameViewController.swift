@@ -89,12 +89,17 @@ extension NicknameViewController: DesignViews {
 }
 
 extension NicknameViewController: ConfigButtonClicked {
+    
     @IBAction func profileImageViewTapped(_ sender: UITapGestureRecognizer) {
         let sb = UIStoryboard(name: ImageViewController.sbIdentifier, bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: ImageViewController.identifier) as! ImageViewController
         
         vc.selectedImage = nowImage
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
     
     @objc func completeButtonClicked() {

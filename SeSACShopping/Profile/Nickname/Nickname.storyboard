@@ -74,6 +74,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8Lj-x2-OHj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="8Lj-x2-OHj" firstAttribute="trailing" secondItem="IK7-3z-Opb" secondAttribute="trailing" constant="32" id="0uf-5G-haN"/>
                             <constraint firstItem="mnb-z1-9a6" firstAttribute="trailing" secondItem="RCA-5i-Yq1" secondAttribute="trailing" id="6XI-Ji-YOc"/>
@@ -91,6 +92,9 @@
                             <constraint firstItem="IK7-3z-Opb" firstAttribute="leading" secondItem="8Lj-x2-OHj" secondAttribute="leading" constant="32" id="mWJ-3C-t46"/>
                             <constraint firstItem="IK7-3z-Opb" firstAttribute="top" secondItem="lR0-Nj-lkf" secondAttribute="bottom" constant="8" id="nvN-nk-tsM"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="OiF-Bk-txF" appends="YES" id="Ukl-4c-gda"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="cameraImageView" destination="mnb-z1-9a6" id="KyM-45-qDu"/>
@@ -104,6 +108,11 @@
                 <tapGestureRecognizer id="YCl-YK-xEB">
                     <connections>
                         <action selector="profileImageViewTapped:" destination="jEw-Hf-LLM" id="3Qv-vi-Y67"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="OiF-Bk-txF">
+                    <connections>
+                        <action selector="viewTapped:" destination="jEw-Hf-LLM" id="daQ-Sg-Rr6"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
