@@ -8,8 +8,7 @@
 import UIKit
 import WebKit
 
-class DetailViewController: UIViewController, ConfigIdentifier {
-    static var identifier: String = "DetailViewController"
+class DetailViewController: UIViewController, ConfigStoryBoardIdentifier{
     static var sbIdentifier: String = "Detail"
     
     @IBOutlet var webView: WKWebView!

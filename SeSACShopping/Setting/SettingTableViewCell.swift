@@ -7,9 +7,7 @@
 
 import UIKit
 
-class SettingTableViewCell: UITableViewCell, ConfigIdentifier {
-    static var identifier: String = "SettingTableViewCell"
-    
+class SettingTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }

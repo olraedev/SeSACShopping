@@ -7,9 +7,7 @@
 
 import UIKit
 
-class InfoTableViewCell: UITableViewCell, ConfigIdentifier {
-    static var identifier: String = "InfoTableViewCell"
-    
+class InfoTableViewCell: UITableViewCell {
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var nicknameLabel: UILabel!
     @IBOutlet var likeLabel: UILabel!

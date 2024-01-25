@@ -7,9 +7,7 @@
 
 import UIKit
 
-class ImageCollectionViewCell: UICollectionViewCell, ConfigIdentifier {
-    static var identifier: String = "ImageCollectionViewCell"
-    
+class ImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet var profileImageView: UIImageView!
     
     override func awakeFromNib() {

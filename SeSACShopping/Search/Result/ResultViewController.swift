@@ -8,8 +8,7 @@
 import UIKit
 import Toast
 
-class ResultViewController: UIViewController, ConfigIdentifier {
-    static var identifier: String = "ResultViewController"
+class ResultViewController: UIViewController, ConfigStoryBoardIdentifier {
     static var sbIdentifier: String = "Result"
     
     @IBOutlet var totalLabel: UILabel!

@@ -11,8 +11,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, ConfigIdentifier {
-    static var identifier: String = "SearchViewController"
+class SearchViewController: UIViewController, ConfigStoryBoardIdentifier {
     static var sbIdentifier: String = "Search"
 
     @IBOutlet var searchBar: UISearchBar!

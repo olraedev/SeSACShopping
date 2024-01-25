@@ -7,8 +7,7 @@
 
 import UIKit
 
-class SettingViewController: UIViewController, ConfigIdentifier {
-    static var identifier: String = "SettingViewController"
+class SettingViewController: UIViewController, ConfigStoryBoardIdentifier {
     static var sbIdentifier: String = "Setting"
     
     @IBOutlet var tableView: UITableView!

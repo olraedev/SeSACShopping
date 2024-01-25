@@ -7,6 +7,24 @@
 
 import UIKit
 
+extension UIViewController: ConfigIdentifier {
+    static var identifier: String {
+        return String(describing: self)
+    }
+}
+
+extension UICollectionViewCell: ConfigIdentifier {
+    static var identifier: String {
+        return String(describing: self)
+    }
+}
+
+extension UITableViewCell: ConfigIdentifier {
+    static var identifier: String {
+        return String(describing: self)
+    }
+}
+
 extension UIViewController {
     func setBackgroundColor() {
         view.backgroundColor = ColorDesign.bgc.fill

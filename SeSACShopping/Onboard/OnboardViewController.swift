@@ -7,8 +7,7 @@
 
 import UIKit
 
-class OnboardViewController: UIViewController, ConfigIdentifier {
-    static var identifier: String = "OnboardViewController"
+class OnboardViewController: UIViewController, ConfigStoryBoardIdentifier {
     static var sbIdentifier: String = "Onboard"
     
     @IBOutlet var titleImageView: UIImageView!

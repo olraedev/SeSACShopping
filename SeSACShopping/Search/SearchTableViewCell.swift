@@ -7,9 +7,7 @@
 
 import UIKit
 
-class SearchTableViewCell: UITableViewCell, ConfigIdentifier {
-    static var identifier: String = "SearchTableViewCell"
-
+class SearchTableViewCell: UITableViewCell {
     @IBOutlet var magnifyImageView: UIImageView!
     @IBOutlet var keywordLabel: UILabel!
     @IBOutlet var eraseButton: UIButton!

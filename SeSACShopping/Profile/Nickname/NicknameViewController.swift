@@ -11,8 +11,7 @@
 
 import UIKit
 
-class NicknameViewController: UIViewController, ConfigIdentifier {
-    static var identifier: String = "NicknameViewController"
+class NicknameViewController: UIViewController, ConfigStoryBoardIdentifier {
     static var sbIdentifier: String = "Nickname"
 
     @IBOutlet var profileImageView: UIImageView!

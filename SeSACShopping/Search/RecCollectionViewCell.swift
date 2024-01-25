@@ -7,9 +7,7 @@
 
 import UIKit
 
-class RecCollectionViewCell: UICollectionViewCell, ConfigIdentifier {
-    static var identifier: String = "RecCollectionViewCell"
-
+class RecCollectionViewCell: UICollectionViewCell {
     @IBOutlet var recButton: UIButton!
     
     override func awakeFromNib() {

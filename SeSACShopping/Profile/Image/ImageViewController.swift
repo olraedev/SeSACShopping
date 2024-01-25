@@ -7,8 +7,7 @@
 
 import UIKit
 
-class ImageViewController: UIViewController, ConfigIdentifier {
-    static var identifier: String = "ImageViewController"
+class ImageViewController: UIViewController, ConfigStoryBoardIdentifier {
     static var sbIdentifier: String = "Image"
     
     @IBOutlet var selectImageView: UIImageView!

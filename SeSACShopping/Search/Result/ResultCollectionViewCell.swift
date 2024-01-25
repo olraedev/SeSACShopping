@@ -8,8 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ResultCollectionViewCell: UICollectionViewCell, ConfigIdentifier {
-    static var identifier: String = "ResultCollectionViewCell"
+class ResultCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var itemImageView: UIImageView!
     @IBOutlet var likeButton: UIButton!
