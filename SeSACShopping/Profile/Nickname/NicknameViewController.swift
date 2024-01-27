@@ -28,7 +28,7 @@ class NicknameViewController: UIViewController, ConfigStoryBoardIdentifier {
         
         setBackgroundColor()
         designNavigationItem()
-        designOutlets()
+        designViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,7 +58,7 @@ extension NicknameViewController: UITextFieldDelegate {
 }
 // 아웃렛 변수, 네비게이션 설정 관련
 extension NicknameViewController: DesignViews {
-    func designOutlets() {
+    func designViews() {
         inputTextField.delegate = self
         
         designCircleImageView(profileImageView)

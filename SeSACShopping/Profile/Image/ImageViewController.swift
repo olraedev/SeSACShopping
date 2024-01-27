@@ -20,13 +20,13 @@ class ImageViewController: UIViewController, ConfigStoryBoardIdentifier {
         
         setBackgroundColor()
         designNavigationItem()
-        designOutlets()
+        designViews()
         configCollectionView()
     }
 }
 
 extension ImageViewController: DesignViews {
-    func designOutlets() {
+    func designViews() {
         collectionView.backgroundColor = ColorDesign.clear.fill
         configCollectionViewLayout()
         

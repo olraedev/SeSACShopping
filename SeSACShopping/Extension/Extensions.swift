@@ -7,25 +7,19 @@
 
 import UIKit
 
+extension UIView {
+    func addSubviews(_ views: [UIView]) {
+        for view in views {
+            self.addSubview(view)
+        }
+    }
+}
+
 extension UIViewController: ConfigIdentifier {
     static var identifier: String {
         return String(describing: self)
     }
-}
-
-extension UICollectionViewCell: ConfigIdentifier {
-    static var identifier: String {
-        return String(describing: self)
-    }
-}
-
-extension UITableViewCell: ConfigIdentifier {
-    static var identifier: String {
-        return String(describing: self)
-    }
-}
-
-extension UIViewController {
+    
     func setBackgroundColor() {
         view.backgroundColor = ColorDesign.bgc.fill
     }
@@ -77,7 +71,11 @@ extension UIViewController {
     }
 }
 
-extension UICollectionViewCell {
+extension UICollectionViewCell: ConfigIdentifier {
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
     func replaceTitle(_ title: String) -> String {
         var text: String = title.replacingOccurrences(of: "<b>", with: "")
         text = text.replacingOccurrences(of:"</b>", with: "")
@@ -86,7 +84,11 @@ extension UICollectionViewCell {
     }
 }
 
-extension UITableViewCell {
+extension UITableViewCell: ConfigIdentifier {
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
     func designCircleImageView(_ imageView: UIImageView) {
         imageView.layer.cornerRadius = imageView.frame.width / 2
     }

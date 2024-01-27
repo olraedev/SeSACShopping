@@ -11,22 +11,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let scene = (scene as? UIWindowScene) else { return }
         
         localNotificationToUser()
         
         UINavigationBar.appearance().tintColor = ColorDesign.text.fill
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
         
+        window = UIWindow(windowScene: scene)
+        
         let nickname = UserDefaultsManager.shared.getStringValue(.nickname)
         let profile = UserDefaultsManager.shared.getStringValue(.profile)
         
         if nickname == "" || profile == "" {
-            let sb = UIStoryboard(name: OnboardViewController.sbIdentifier, bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: OnboardViewController.identifier) as! OnboardViewController
-            let nav = UINavigationController(rootViewController: vc)
+            let nav = UINavigationController(rootViewController: OnboardViewController())
             
             window?.rootViewController = nav
             window?.makeKeyAndVisible()

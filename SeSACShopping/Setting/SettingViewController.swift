@@ -16,7 +16,7 @@ class SettingViewController: UIViewController, ConfigStoryBoardIdentifier {
         super.viewDidLoad()
         
         setBackgroundColor()
-        designOutlets()
+        designViews()
         designNavigationItem()
         
         configTableView()
@@ -28,7 +28,7 @@ class SettingViewController: UIViewController, ConfigStoryBoardIdentifier {
 }
 
 extension SettingViewController: DesignViews {
-    func designOutlets() {
+    func designViews() {
         tableView.backgroundColor = ColorDesign.bgc.fill
     }
     

@@ -8,8 +8,12 @@
 import UIKit
 
 @objc protocol DesignViews {
-    func designOutlets()
+    func designViews()
     @objc optional func designNavigationItem()
+}
+
+protocol SetupConstraints {
+    func setupConstraints()
 }
 
 protocol ConfigIdentifier {

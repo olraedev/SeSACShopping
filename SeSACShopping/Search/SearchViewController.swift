@@ -33,7 +33,7 @@ class SearchViewController: UIViewController, ConfigStoryBoardIdentifier {
         
         setBackgroundColor()
         designNavigationItem()
-        designOutlets()
+        designViews()
         configTableView()
         changeView()
         configCollectionView()
@@ -60,7 +60,7 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 extension SearchViewController: DesignViews {
-    func designOutlets() {
+    func designViews() {
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "브랜드, 상품, 프로필, 태그 등", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.cgColor])
         searchBar.barTintColor = ColorDesign.bgc.fill
         searchBar.tintColor = ColorDesign.text.fill

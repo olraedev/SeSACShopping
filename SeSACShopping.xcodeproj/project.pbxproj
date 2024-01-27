@@ -43,11 +43,12 @@
 		EC6DF0F02B593CE700F7649A /* FontDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DF0EF2B593CE700F7649A /* FontDesign.swift */; };
 		EC6DF0F22B593CF300F7649A /* ColorDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DF0F12B593CF300F7649A /* ColorDesign.swift */; };
 		EC6DF0F42B593F8D00F7649A /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DF0F32B593F8D00F7649A /* APIKey.swift */; };
-		EC6DF0F72B5940C300F7649A /* Onboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC6DF0F62B5940C300F7649A /* Onboard.storyboard */; };
 		EC6DF0F92B5948C200F7649A /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DF0F82B5948C200F7649A /* OnboardViewController.swift */; };
 		EC6DF0FC2B59495500F7649A /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DF0FB2B59495500F7649A /* Protocols.swift */; };
 		ECCE64D82B597C6E000D5F83 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = ECCE64D72B597C6E000D5F83 /* TextFieldEffects */; };
 		ECCE64DB2B597DD0000D5F83 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE64DA2B597DD0000D5F83 /* Extensions.swift */; };
+		ECF72B3A2B650DF80017C9E0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = ECF72B392B650DF80017C9E0 /* SnapKit */; };
+		ECF72B3C2B650DF80017C9E0 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = ECF72B3B2B650DF80017C9E0 /* SnapKit-Dynamic */; };
 		ECF908082B5D309A00C5C2C7 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECF908072B5D309A00C5C2C7 /* Detail.storyboard */; };
 		ECF9080A2B5D30BE00C5C2C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF908092B5D30BE00C5C2C7 /* DetailViewController.swift */; };
 		ECF9080D2B5D3C1E00C5C2C7 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF9080B2B5D3C1E00C5C2C7 /* InfoTableViewCell.swift */; };
@@ -94,7 +95,6 @@
 		EC6DF0EF2B593CE700F7649A /* FontDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontDesign.swift; sourceTree = "<group>"; };
 		EC6DF0F12B593CF300F7649A /* ColorDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorDesign.swift; sourceTree = "<group>"; };
 		EC6DF0F32B593F8D00F7649A /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
-		EC6DF0F62B5940C300F7649A /* Onboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboard.storyboard; sourceTree = "<group>"; };
 		EC6DF0F82B5948C200F7649A /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		EC6DF0FB2B59495500F7649A /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		ECCE64DA2B597DD0000D5F83 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -117,6 +117,8 @@
 				EC3B0CA92B5CFBF50000E0CA /* Kingfisher in Frameworks */,
 				ECCE64D82B597C6E000D5F83 /* TextFieldEffects in Frameworks */,
 				EC3B0CA62B5CFBED0000E0CA /* Alamofire in Frameworks */,
+				ECF72B3A2B650DF80017C9E0 /* SnapKit in Frameworks */,
+				ECF72B3C2B650DF80017C9E0 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +267,6 @@
 		EC6DF0F52B59409100F7649A /* Onboard */ = {
 			isa = PBXGroup;
 			children = (
-				EC6DF0F62B5940C300F7649A /* Onboard.storyboard */,
 				EC6DF0F82B5948C200F7649A /* OnboardViewController.swift */,
 			);
 			path = Onboard;
@@ -317,6 +318,8 @@
 				EC3B0CA52B5CFBED0000E0CA /* Alamofire */,
 				EC3B0CA82B5CFBF50000E0CA /* Kingfisher */,
 				EC12127A2B5F771C00F6221D /* Toast */,
+				ECF72B392B650DF80017C9E0 /* SnapKit */,
+				ECF72B3B2B650DF80017C9E0 /* SnapKit-Dynamic */,
 			);
 			productName = SeSACShopping;
 			productReference = EC6DF0D12B5938A400F7649A /* SeSACShopping.app */;
@@ -351,6 +354,7 @@
 				EC3B0CA42B5CFBED0000E0CA /* XCRemoteSwiftPackageReference "Alamofire" */,
 				EC3B0CA72B5CFBF50000E0CA /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				EC1212792B5F771B00F6221D /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				ECF72B382B650DF80017C9E0 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = EC6DF0D22B5938A400F7649A /* Products */;
 			projectDirPath = "";
@@ -382,7 +386,6 @@
 				EC4276FF2B5AC40A00ADADBD /* Setting.storyboard in Resources */,
 				ECF908082B5D309A00C5C2C7 /* Detail.storyboard in Resources */,
 				EC4276F52B5A73EB00ADADBD /* ImageCollectionViewCell.xib in Resources */,
-				EC6DF0F72B5940C300F7649A /* Onboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,6 +692,14 @@
 				minimumVersion = 1.7.0;
 			};
 		};
+		ECF72B382B650DF80017C9E0 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -711,6 +722,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ECCE64D62B597C6E000D5F83 /* XCRemoteSwiftPackageReference "TextFieldEffects" */;
 			productName = TextFieldEffects;
+		};
+		ECF72B392B650DF80017C9E0 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECF72B382B650DF80017C9E0 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		ECF72B3B2B650DF80017C9E0 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECF72B382B650DF80017C9E0 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

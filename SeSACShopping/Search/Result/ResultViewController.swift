@@ -29,7 +29,7 @@ class ResultViewController: UIViewController, ConfigStoryBoardIdentifier {
         super.viewDidLoad()
         
         setBackgroundColor()
-        designOutlets()
+        designViews()
         designNavigationItem()
         
         configCollectionView()
@@ -44,7 +44,7 @@ class ResultViewController: UIViewController, ConfigStoryBoardIdentifier {
 }
 
 extension ResultViewController: DesignViews {
-    func designOutlets() {
+    func designViews() {
         totalLabel.textColor = ColorDesign.point.fill
         totalLabel.font = FontDesign.small.bold
         

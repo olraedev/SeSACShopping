@@ -21,13 +21,13 @@ class DetailViewController: UIViewController, ConfigStoryBoardIdentifier{
         super.viewDidLoad()
         
         setBackgroundColor()
-        designOutlets()
+        designViews()
         designNavigationItem()
     }
 }
 
 extension DetailViewController: DesignViews {
-    func designOutlets() {
+    func designViews() {
         let urlString = "https://msearch.shopping.naver.com/product/\(productId)"
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
