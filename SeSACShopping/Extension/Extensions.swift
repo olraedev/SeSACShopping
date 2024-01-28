@@ -59,7 +59,7 @@ extension UIViewController: ConfigIdentifier {
     
     func presentAlert(title: String, message: String, button: String, completionHandler: @escaping () -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let button = UIAlertAction(title: button, style: .default) { action in
+        let button = UIAlertAction(title: button, style: .default) { _ in
             completionHandler()
         }
         let cancelButton = UIAlertAction(title: "취소", style: .cancel)

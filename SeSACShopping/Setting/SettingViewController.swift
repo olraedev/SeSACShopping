@@ -61,7 +61,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: InfoTableViewCell.identifier, for: indexPath) as! InfoTableViewCell
             
-            cell.selectionStyle = .none
             cell.configCell()
             
             return cell
@@ -90,9 +89,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             presentAlert(title: "처음부터 시작하기", message: "데이터를 모두 초기화하시겠습니까?", button: "확인") {
                 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                 let sceneDelegate = windowScene?.delegate as? SceneDelegate
-                let sb = UIStoryboard(name: "Onboard", bundle: nil)
-                let vc = sb.instantiateViewController(withIdentifier: OnboardViewController.identifier) as! OnboardViewController
-                let nav = UINavigationController(rootViewController: vc)
+                let nav = UINavigationController(rootViewController: OnboardViewController())
                 
                 sceneDelegate?.window?.rootViewController = nav
                 sceneDelegate?.window?.makeKeyAndVisible()

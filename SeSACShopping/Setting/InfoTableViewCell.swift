@@ -21,6 +21,7 @@ class InfoTableViewCell: UITableViewCell {
     }
     
     func designCell() {
+        selectionStyle = .none
         designCircleImageView(profileImageView)
         designPointBorderImageView(profileImageView)
         nicknameLabel.textColor = ColorDesign.text.fill

@@ -5,25 +5,20 @@
 //  Created by SangRae Kim on 1/19/24.
 //
 
-/*
- 1. 그냥 로직을 다시 짜야함.. 졸려서 이만...
- */
-
 import UIKit
+import SnapKit
 
-class SearchViewController: UIViewController, ConfigStoryBoardIdentifier {
-    static var sbIdentifier: String = "Search"
-
-    @IBOutlet var searchBar: UISearchBar!
-    @IBOutlet var emptyView: UIView!
-    @IBOutlet var recLabel: UILabel!
-    @IBOutlet var recCollectionView: UICollectionView!
-    @IBOutlet var emptyImageView: UIImageView!
-    @IBOutlet var emptyLabel: UILabel!
-    @IBOutlet var recentView: UIView!
-    @IBOutlet var recentLabel: UILabel!
-    @IBOutlet var allEraseButton: UIButton!
-    @IBOutlet var recentTableView: UITableView!
+class SearchViewController: UIViewController {
+    let searchBar = UISearchBar()
+    let emptyView = UIView()
+    let recLabel = UILabel()
+    lazy var recCollectionView = UICollectionView(frame: .zero, collectionViewLayout: configCollectionViewLayout())
+    let emptyImageView = UIImageView()
+    let emptyLabel = UILabel()
+    let recentView = UIView()
+    let recentLabel = UILabel()
+    let allEraseButton = UIButton()
+    let recentTableView = UITableView()
     
     var searchList: [String] = UserDefaultsManager.shared.getSearchList()
     var recList: [String] = Recommendation().returnShuffledList
@@ -32,8 +27,12 @@ class SearchViewController: UIViewController, ConfigStoryBoardIdentifier {
         super.viewDidLoad()
         
         setBackgroundColor()
+        view.addSubviews([searchBar, emptyView, recentView])
+        emptyView.addSubviews([recLabel, recCollectionView, emptyImageView, emptyLabel])
+        recentView.addSubviews([recentLabel, allEraseButton, recentTableView])
         designNavigationItem()
         designViews()
+        setupConstraints()
         configTableView()
         changeView()
         configCollectionView()
@@ -45,7 +44,6 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text == "" {
             view.endEditing(true)
-            searchBar.text = ""
         } else {
             guard let text = searchBar.text else {
                 return
@@ -61,6 +59,7 @@ extension SearchViewController: UISearchBarDelegate {
 
 extension SearchViewController: DesignViews {
     func designViews() {
+        searchBar.delegate = self
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "브랜드, 상품, 프로필, 태그 등", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray.cgColor])
         searchBar.barTintColor = ColorDesign.bgc.fill
         searchBar.tintColor = ColorDesign.text.fill
@@ -89,17 +88,68 @@ extension SearchViewController: DesignViews {
         recentLabel.font = FontDesign.mid.light
         
         allEraseButton.setTitle("모두 지우기", for: .normal)
-        allEraseButton.tintColor = ColorDesign.point.fill
+        allEraseButton.setTitleColor(ColorDesign.point.fill, for: .normal)
         allEraseButton.titleLabel?.font = FontDesign.mid.bold
         allEraseButton.addTarget(self, action: #selector(allEraseButtonClicked), for: .touchUpInside)
         
         recentTableView.backgroundColor = ColorDesign.clear.fill
+        recentTableView.rowHeight = 44
     }
     
     func designNavigationItem() {
         let nickname = UserDefaultsManager.shared.getStringValue(.nickname)
-//        let nickname = "자고싶다..."
         navigationItem.title = "\(nickname)님의 새싹쇼핑"
+    }
+}
+
+extension SearchViewController: SetupConstraints {
+    func setupConstraints() {
+        searchBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(8)
+            make.horizontalEdges.equalTo(view)
+            make.height.equalTo(44)
+        }
+        emptyView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view)
+            make.top.equalTo(searchBar.snp.bottom)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        recLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(8)
+            make.top.equalToSuperview().offset(16)
+            make.height.equalTo(22)
+        }
+        recCollectionView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.top.equalTo(recLabel.snp.bottom)
+            make.height.equalTo(54)
+        }
+        emptyImageView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        emptyLabel.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview().inset(24)
+            make.top.equalTo(emptyImageView.snp.bottom).offset(8)
+        }
+        recentView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view)
+            make.top.equalTo(searchBar.snp.bottom)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        recentLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(8)
+            make.top.equalToSuperview().offset(16)
+            make.height.equalTo(22)
+        }
+        allEraseButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-8)
+            make.top.equalToSuperview().offset(16)
+            make.height.equalTo(22)
+        }
+        recentTableView.snp.makeConstraints { make in
+            make.top.equalTo(allEraseButton.snp.bottom).offset(16)
+            make.bottom.horizontalEdges.equalTo(recentView.safeAreaLayoutGuide)
+        }
     }
 }
 
@@ -108,8 +158,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         recentTableView.delegate = self
         recentTableView.dataSource = self
         
-        let xib = UINib(nibName: SearchTableViewCell.identifier, bundle: nil)
-        recentTableView.register(xib, forCellReuseIdentifier: SearchTableViewCell.identifier)
+        recentTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -184,22 +233,21 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func configCollectionView() {
         recCollectionView.dataSource = self
         recCollectionView.delegate = self
-        
-        let xib = UINib(nibName: RecCollectionViewCell.identifier, bundle: nil)
-        recCollectionView.register(xib, forCellWithReuseIdentifier: RecCollectionViewCell.identifier)
+
+        recCollectionView.register(RecCollectionViewCell.self, forCellWithReuseIdentifier: RecCollectionViewCell.identifier)
     }
     
-    func configCollectionViewLayout() {
+    func configCollectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         let space: CGFloat = 8
         
         layout.itemSize = CGSize(width: 60, height: 54)
         layout.sectionInset = UIEdgeInsets(top: space, left: space, bottom: space, right: space)
-//        layout.minimumLineSpacing = space
+        //        layout.minimumLineSpacing = space
         layout.minimumInteritemSpacing = 3
         layout.scrollDirection = .horizontal
         
-        recCollectionView.collectionViewLayout = layout
+        return layout
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

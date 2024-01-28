@@ -8,14 +8,20 @@
 import UIKit
 
 class RecCollectionViewCell: UICollectionViewCell {
-    @IBOutlet var recButton: UIButton!
+//    @IBOutlet var recButton: UIButton!
+    let recButton = UIButton()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
+        self.addSubview(recButton)
         configureCell()
+        setupConstraints()
     }
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 extension RecCollectionViewCell {
@@ -33,5 +39,14 @@ extension RecCollectionViewCell {
     func configureCell(_ item: String, row: Int) {
         recButton.setTitle(item, for: .normal)
         recButton.tag = row
+    }
+}
+
+extension RecCollectionViewCell: SetupConstraints {
+    func setupConstraints() {
+        recButton.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(60)
+        }
     }
 }
