@@ -6,12 +6,11 @@
 //
 
 import UIKit
+import SnapKit
 
-class ImageViewController: UIViewController, ConfigStoryBoardIdentifier {
-    static var sbIdentifier: String = "Image"
-    
-    @IBOutlet var selectImageView: UIImageView!
-    @IBOutlet var collectionView: UICollectionView!
+class ImageViewController: UIViewController {
+    let selectImageView = UIImageView()
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: configCollectionViewLayout())
     
     var selectedImage: String = ""
     
@@ -19,20 +18,21 @@ class ImageViewController: UIViewController, ConfigStoryBoardIdentifier {
         super.viewDidLoad()
         
         setBackgroundColor()
+        view.addSubviews([selectImageView, collectionView])
         designNavigationItem()
         designViews()
+        configConstraints()
         configCollectionView()
     }
 }
 
 extension ImageViewController: DesignViews {
     func designViews() {
-        collectionView.backgroundColor = ColorDesign.clear.fill
-        configCollectionViewLayout()
-        
         selectImageView.image = UIImage(named: selectedImage)
         designCircleImageView(selectImageView)
         designPointBorderImageView(selectImageView)
+        
+        collectionView.backgroundColor = ColorDesign.clear.fill
     }
     
     func designNavigationItem() {
@@ -42,13 +42,26 @@ extension ImageViewController: DesignViews {
     }
 }
 
+extension ImageViewController: ConfigConstraints {
+    func configConstraints() {
+        selectImageView.snp.makeConstraints { make in
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(32)
+            make.size.equalTo(100)
+        }
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(selectImageView.snp.bottom).offset(32)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+}
+
 extension ImageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func configCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        let xib = UINib(nibName: ImageCollectionViewCell.identifier, bundle: nil)
-        collectionView.register(xib, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
+        collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: ImageCollectionViewCell.identifier)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -64,9 +77,7 @@ extension ImageViewController: UICollectionViewDelegate, UICollectionViewDataSou
             cell.profileImageView.layer.borderWidth = 0
         }
         cell.configureCell(image: Profile.images[indexPath.item])
-        DispatchQueue.main.async {
-            self.designCircleImageView(cell.profileImageView)
-        }
+        designCircleImageView(cell.profileImageView)
         
         return cell
     }
@@ -77,7 +88,7 @@ extension ImageViewController: UICollectionViewDelegate, UICollectionViewDataSou
         collectionView.reloadData()
     }
     
-    func configCollectionViewLayout() {
+    func configCollectionViewLayout() -> UICollectionViewLayout{
         let layout = UICollectionViewFlowLayout()
         let space: CGFloat = 8
         let deviceWidth = UIScreen.main.bounds.width
@@ -88,7 +99,7 @@ extension ImageViewController: UICollectionViewDelegate, UICollectionViewDataSou
         layout.minimumLineSpacing = space * 2
         layout.minimumInteritemSpacing = space
         
-        collectionView.collectionViewLayout = layout
+        return layout
     }
 }
 

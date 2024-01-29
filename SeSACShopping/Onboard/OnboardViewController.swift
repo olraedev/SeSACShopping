@@ -20,7 +20,7 @@ class OnboardViewController: UIViewController {
         setBackgroundColor()
         view.addSubviews([titleImageView, mainImageView, startButton])
         designViews()
-        setupConstraints()
+        configConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,8 +38,8 @@ extension OnboardViewController: DesignViews {
     }
 }
 
-extension OnboardViewController: SetupConstraints {
-    func setupConstraints() {
+extension OnboardViewController: ConfigConstraints {
+    func configConstraints() {
         titleImageView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(32)
             make.height.equalTo(130)

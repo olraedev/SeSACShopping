@@ -12,8 +12,8 @@ import UIKit
     @objc optional func designNavigationItem()
 }
 
-protocol SetupConstraints {
-    func setupConstraints()
+protocol ConfigConstraints {
+    func configConstraints()
 }
 
 protocol ConfigIdentifier {

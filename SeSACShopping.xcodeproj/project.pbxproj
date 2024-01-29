@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		EC12127B2B5F771C00F6221D /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = EC12127A2B5F771C00F6221D /* Toast */; };
 		EC1212912B5FE25A00F6221D /* RecCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC12128F2B5FE25A00F6221D /* RecCollectionViewCell.swift */; };
-		EC1212922B5FE25A00F6221D /* RecCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC1212902B5FE25A00F6221D /* RecCollectionViewCell.xib */; };
 		EC1212942B5FE34F00F6221D /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1212932B5FE34F00F6221D /* Recommendation.swift */; };
 		EC2F1AD22B595916004221A8 /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2F1AD12B595916004221A8 /* NicknameViewController.swift */; };
 		EC2F1AD52B596539004221A8 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2F1AD42B596539004221A8 /* UserDefaultsManager.swift */; };
@@ -17,18 +16,14 @@
 		EC3B0CA62B5CFBED0000E0CA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EC3B0CA52B5CFBED0000E0CA /* Alamofire */; };
 		EC3B0CA92B5CFBF50000E0CA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = EC3B0CA82B5CFBF50000E0CA /* Kingfisher */; };
 		EC4276E82B5A664900ADADBD /* NicknameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4276E72B5A664900ADADBD /* NicknameState.swift */; };
-		EC4276ED2B5A72E600ADADBD /* Image.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC4276EC2B5A72E600ADADBD /* Image.storyboard */; };
 		EC4276EF2B5A731900ADADBD /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4276EE2B5A731900ADADBD /* ImageViewController.swift */; };
 		EC4276F42B5A73EB00ADADBD /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4276F22B5A73EB00ADADBD /* ImageCollectionViewCell.swift */; };
-		EC4276F52B5A73EB00ADADBD /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4276F32B5A73EB00ADADBD /* ImageCollectionViewCell.xib */; };
 		EC4276F72B5A778D00ADADBD /* ProfileImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4276F62B5A778D00ADADBD /* ProfileImages.swift */; };
 		EC4276FF2B5AC40A00ADADBD /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC4276FE2B5AC40A00ADADBD /* Setting.storyboard */; };
 		EC4277012B5AC5DB00ADADBD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4277002B5AC5DB00ADADBD /* SearchViewController.swift */; };
 		EC4277042B5AD96200ADADBD /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4277022B5AD96200ADADBD /* SearchTableViewCell.swift */; };
-		EC4277082B5B95C200ADADBD /* Result.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC4277072B5B95C200ADADBD /* Result.storyboard */; };
 		EC42770A2B5B95ED00ADADBD /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4277092B5B95ED00ADADBD /* ResultViewController.swift */; };
 		EC4277132B5B984500ADADBD /* ResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4277112B5B984500ADADBD /* ResultCollectionViewCell.swift */; };
-		EC4277142B5B984500ADADBD /* ResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4277122B5B984500ADADBD /* ResultCollectionViewCell.xib */; };
 		EC4277162B5B9DDB00ADADBD /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4277152B5B9DDB00ADADBD /* Sort.swift */; };
 		EC6DF0D52B5938A400F7649A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DF0D42B5938A400F7649A /* AppDelegate.swift */; };
 		EC6DF0D72B5938A400F7649A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DF0D62B5938A400F7649A /* SceneDelegate.swift */; };
@@ -47,7 +42,6 @@
 		ECCE64DB2B597DD0000D5F83 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE64DA2B597DD0000D5F83 /* Extensions.swift */; };
 		ECF72B3A2B650DF80017C9E0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = ECF72B392B650DF80017C9E0 /* SnapKit */; };
 		ECF72B3C2B650DF80017C9E0 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = ECF72B3B2B650DF80017C9E0 /* SnapKit-Dynamic */; };
-		ECF908082B5D309A00C5C2C7 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECF908072B5D309A00C5C2C7 /* Detail.storyboard */; };
 		ECF9080A2B5D30BE00C5C2C7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF908092B5D30BE00C5C2C7 /* DetailViewController.swift */; };
 		ECF9080D2B5D3C1E00C5C2C7 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF9080B2B5D3C1E00C5C2C7 /* InfoTableViewCell.swift */; };
 		ECF9080E2B5D3C1E00C5C2C7 /* InfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECF9080C2B5D3C1E00C5C2C7 /* InfoTableViewCell.xib */; };
@@ -59,24 +53,19 @@
 
 /* Begin PBXFileReference section */
 		EC12128F2B5FE25A00F6221D /* RecCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecCollectionViewCell.swift; sourceTree = "<group>"; };
-		EC1212902B5FE25A00F6221D /* RecCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecCollectionViewCell.xib; sourceTree = "<group>"; };
 		EC1212932B5FE34F00F6221D /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
 		EC2F1AD12B595916004221A8 /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		EC2F1AD42B596539004221A8 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		EC3B0CA22B5CFBC50000E0CA /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		EC4276E72B5A664900ADADBD /* NicknameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameState.swift; sourceTree = "<group>"; };
-		EC4276EC2B5A72E600ADADBD /* Image.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Image.storyboard; sourceTree = "<group>"; };
 		EC4276EE2B5A731900ADADBD /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		EC4276F22B5A73EB00ADADBD /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		EC4276F32B5A73EB00ADADBD /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		EC4276F62B5A778D00ADADBD /* ProfileImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImages.swift; sourceTree = "<group>"; };
 		EC4276FE2B5AC40A00ADADBD /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		EC4277002B5AC5DB00ADADBD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EC4277022B5AD96200ADADBD /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
-		EC4277072B5B95C200ADADBD /* Result.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Result.storyboard; sourceTree = "<group>"; };
 		EC4277092B5B95ED00ADADBD /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		EC4277112B5B984500ADADBD /* ResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionViewCell.swift; sourceTree = "<group>"; };
-		EC4277122B5B984500ADADBD /* ResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultCollectionViewCell.xib; sourceTree = "<group>"; };
 		EC4277152B5B9DDB00ADADBD /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		EC6DF0D12B5938A400F7649A /* SeSACShopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACShopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC6DF0D42B5938A400F7649A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,7 +83,6 @@
 		EC6DF0FB2B59495500F7649A /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		ECBDD3C12B678CA1003C029C /* PointColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointColorButton.swift; sourceTree = "<group>"; };
 		ECCE64DA2B597DD0000D5F83 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		ECF908072B5D309A00C5C2C7 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		ECF908092B5D30BE00C5C2C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		ECF9080B2B5D3C1E00C5C2C7 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		ECF9080C2B5D3C1E00C5C2C7 /* InfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -150,10 +138,8 @@
 		EC4276EA2B5A72A500ADADBD /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				EC4276EC2B5A72E600ADADBD /* Image.storyboard */,
 				EC4276EE2B5A731900ADADBD /* ImageViewController.swift */,
 				EC4276F22B5A73EB00ADADBD /* ImageCollectionViewCell.swift */,
-				EC4276F32B5A73EB00ADADBD /* ImageCollectionViewCell.xib */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -176,7 +162,6 @@
 				EC4277002B5AC5DB00ADADBD /* SearchViewController.swift */,
 				EC4277022B5AD96200ADADBD /* SearchTableViewCell.swift */,
 				EC12128F2B5FE25A00F6221D /* RecCollectionViewCell.swift */,
-				EC1212902B5FE25A00F6221D /* RecCollectionViewCell.xib */,
 				EC1212932B5FE34F00F6221D /* Recommendation.swift */,
 			);
 			path = Search;
@@ -199,10 +184,8 @@
 		EC4277062B5B95A700ADADBD /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				EC4277072B5B95C200ADADBD /* Result.storyboard */,
 				EC4277092B5B95ED00ADADBD /* ResultViewController.swift */,
 				EC4277112B5B984500ADADBD /* ResultCollectionViewCell.swift */,
-				EC4277122B5B984500ADADBD /* ResultCollectionViewCell.xib */,
 				EC4277152B5B9DDB00ADADBD /* Sort.swift */,
 			);
 			path = Result;
@@ -293,7 +276,6 @@
 		ECF908062B5D308D00C5C2C7 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				ECF908072B5D309A00C5C2C7 /* Detail.storyboard */,
 				ECF908092B5D30BE00C5C2C7 /* DetailViewController.swift */,
 			);
 			path = Detail;
@@ -372,19 +354,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC4276ED2B5A72E600ADADBD /* Image.storyboard in Resources */,
 				EC6DF0EB2B593B9000F7649A /* .gitignore in Resources */,
 				EC6DF0E12B5938A600F7649A /* LaunchScreen.storyboard in Resources */,
-				EC4277142B5B984500ADADBD /* ResultCollectionViewCell.xib in Resources */,
 				EC6DF0DE2B5938A600F7649A /* Assets.xcassets in Resources */,
-				EC4277082B5B95C200ADADBD /* Result.storyboard in Resources */,
 				EC6DF0DC2B5938A400F7649A /* Main.storyboard in Resources */,
-				EC1212922B5FE25A00F6221D /* RecCollectionViewCell.xib in Resources */,
 				ECF908122B5D3C2B00C5C2C7 /* SettingTableViewCell.xib in Resources */,
 				ECF9080E2B5D3C1E00C5C2C7 /* InfoTableViewCell.xib in Resources */,
 				EC4276FF2B5AC40A00ADADBD /* Setting.storyboard in Resources */,
-				ECF908082B5D309A00C5C2C7 /* Detail.storyboard in Resources */,
-				EC4276F52B5A73EB00ADADBD /* ImageCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

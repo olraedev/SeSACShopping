@@ -33,7 +33,10 @@ extension UIViewController: ConfigIdentifier {
     }
     
     func designCircleImageView(_ imageView: UIImageView) {
-        imageView.layer.cornerRadius = imageView.frame.width / 2
+        DispatchQueue.main.async {
+            imageView.clipsToBounds = true
+            imageView.layer.cornerRadius = imageView.frame.width / 2
+        }
     }
     
     func designPointBorderImageView(_ imageView: UIImageView) {

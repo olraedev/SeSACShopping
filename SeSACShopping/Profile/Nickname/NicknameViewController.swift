@@ -29,7 +29,7 @@ class NicknameViewController: UIViewController {
         view.addSubviews([profileImageView, cameraImageView, inputTextField, stateLabel, completeButton])
         designNavigationItem()
         designViews()
-        setupConstraints()
+        configConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,8 +44,8 @@ class NicknameViewController: UIViewController {
     }
 }
 
-extension NicknameViewController: SetupConstraints {
-    func setupConstraints() {
+extension NicknameViewController: ConfigConstraints {
+    func configConstraints() {
         profileImageView.snp.makeConstraints { make in
             make.centerX.equalTo(view)
             make.size.equalTo(120)
@@ -89,15 +89,19 @@ extension NicknameViewController: UITextFieldDelegate {
 // 아웃렛 변수, 네비게이션 설정 관련
 extension NicknameViewController: DesignViews {
     func designViews() {
-        inputTextField.delegate = self
+        var tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        view.addGestureRecognizer(tapGesture)
         
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileImageViewTapped))
         designCircleImageView(profileImageView)
         designPointBorderImageView(profileImageView)
+        profileImageView.addGestureRecognizer(tapGesture)
         profileImageView.isUserInteractionEnabled = true
         
         cameraImageView.image = .camera
         designCircleImageView(cameraImageView)
         
+        inputTextField.delegate = self
         inputTextField.placeholder = "닉네임을 입력해주세요 :)"
         inputTextField.borderStyle = .none
         inputTextField.textColor = ColorDesign.text.fill
@@ -122,16 +126,14 @@ extension NicknameViewController: DesignViews {
 }
 
 extension NicknameViewController: ConfigButtonClicked {
-    
-    @IBAction func profileImageViewTapped(_ sender: UITapGestureRecognizer) {
-        let sb = UIStoryboard(name: ImageViewController.sbIdentifier, bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: ImageViewController.identifier) as! ImageViewController
+    @objc func profileImageViewTapped() {
+        let vc = ImageViewController()
         
         vc.selectedImage = nowImage
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
+    @objc func viewTapped() {
         view.endEditing(true)
     }
     
