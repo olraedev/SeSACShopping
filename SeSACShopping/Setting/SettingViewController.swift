@@ -7,23 +7,30 @@
 
 import UIKit
 
-class SettingViewController: UIViewController, ConfigStoryBoardIdentifier {
-    static var sbIdentifier: String = "Setting"
-    
-    @IBOutlet var tableView: UITableView!
+class SettingViewController: UIViewController {
+    let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setBackgroundColor()
+        view.addSubview(tableView)
         designViews()
         designNavigationItem()
+        configConstraints()
         
         configTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
+    }
+}
+extension SettingViewController: ConfigConstraints {
+    func configConstraints() {
+        tableView.snp.makeConstraints { make in
+            make.directionalEdges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 }
 
@@ -42,10 +49,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
-        let infoXib = UINib(nibName: InfoTableViewCell.identifier, bundle: nil)
-        let settingXib = UINib(nibName: SettingTableViewCell.identifier, bundle: nil)
-        tableView.register(infoXib, forCellReuseIdentifier: InfoTableViewCell.identifier)
-        tableView.register(settingXib, forCellReuseIdentifier: SettingTableViewCell.identifier)
+        tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: InfoTableViewCell.identifier)
+        tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,11 +72,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as! SettingTableViewCell
             
-            cell.textLabel?.text = Setting.allCases[indexPath.row].rawValue
-            cell.textLabel?.font = FontDesign.mid.light
-            cell.textLabel?.textColor = ColorDesign.text.fill
-            cell.backgroundColor = UIColor(red: 28/255, green: 28/255, blue: 28/255, alpha: 1)
-            cell.selectionStyle = .none
+            cell.titleLabel.text = Setting.allCases[indexPath.row].rawValue
             
             return cell
         }

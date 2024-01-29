@@ -8,18 +8,53 @@
 import UIKit
 
 class InfoTableViewCell: UITableViewCell {
-    @IBOutlet var profileImageView: UIImageView!
-    @IBOutlet var nicknameLabel: UILabel!
-    @IBOutlet var likeLabel: UILabel!
-    @IBOutlet var textsLabel: UILabel!
+    let profileImageView = UIImageView()
+    let nicknameLabel = UILabel()
+    let likeLabel = UILabel()
+    let textsLabel = UILabel()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         backgroundColor = UIColor(red: 28/255, green: 28/255, blue: 28/255, alpha: 1)
+        contentView.addSubviews([profileImageView, nicknameLabel, likeLabel, textsLabel])
         designCell()
+        configConstraints()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension InfoTableViewCell: ConfigConstraints {
+    func configConstraints() {
+        contentView.snp.makeConstraints { make in
+            make.height.equalTo(100)
+        }
+        profileImageView.snp.makeConstraints { make in
+            make.top.leading.equalTo(contentView).inset(16)
+            make.size.equalTo(60)
+        }
+        nicknameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(profileImageView.snp.trailing).offset(32)
+            make.top.equalTo(contentView).offset(16)
+            make.height.equalTo(33)
+        }
+        likeLabel.snp.makeConstraints { make in
+            make.leading.equalTo(profileImageView.snp.trailing).offset(32)
+            make.bottom.equalTo(profileImageView.snp.bottom)
+            make.height.equalTo(22)
+        }
+        textsLabel.snp.makeConstraints { make in
+            make.leading.equalTo(likeLabel.snp.trailing)
+            make.bottom.equalTo(profileImageView.snp.bottom)
+            make.height.equalTo(22)
+        }
+    }
+}
+
+extension InfoTableViewCell {
     func designCell() {
         selectionStyle = .none
         designCircleImageView(profileImageView)
