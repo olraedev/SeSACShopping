@@ -16,7 +16,7 @@ class RecCollectionViewCell: UICollectionViewCell {
         
         self.addSubview(recButton)
         configureCell()
-        setupConstraints()
+        configConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -42,8 +42,8 @@ extension RecCollectionViewCell {
     }
 }
 
-extension RecCollectionViewCell: SetupConstraints {
-    func setupConstraints() {
+extension RecCollectionViewCell: ConfigConstraints {
+    func configConstraints() {
         recButton.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.equalTo(60)

@@ -79,7 +79,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == IndexPath(row: 0, section: 0) {
-            let vc = UINavigationController(rootViewController: NicknameViewController())
+            let vc = NicknameViewController()
             
             navigationController?.pushViewController(vc, animated: true)
         }

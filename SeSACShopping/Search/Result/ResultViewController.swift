@@ -8,15 +8,13 @@
 import UIKit
 import Toast
 
-class ResultViewController: UIViewController, ConfigStoryBoardIdentifier {
-    static var sbIdentifier: String = "Result"
-    
-    @IBOutlet var totalLabel: UILabel!
-    @IBOutlet var simButton: UIButton!
-    @IBOutlet var dateButton: UIButton!
-    @IBOutlet var dscButton: UIButton!
-    @IBOutlet var ascButton: UIButton!
-    @IBOutlet var collectionView: UICollectionView!
+class ResultViewController: UIViewController {
+    let totalLabel = UILabel()
+    let simButton = UIButton()
+    let dateButton = UIButton()
+    let dscButton = UIButton()
+    let ascButton = UIButton()
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: configCollectionViewLayout())
     
     lazy var buttons: [UIButton] = [simButton, dateButton, dscButton, ascButton]
     var keyword: String = ""
@@ -29,17 +27,55 @@ class ResultViewController: UIViewController, ConfigStoryBoardIdentifier {
         super.viewDidLoad()
         
         setBackgroundColor()
+        view.addSubviews([totalLabel, simButton, dateButton, dscButton, ascButton, collectionView])
         designViews()
         designNavigationItem()
+        configConstraints()
         
         configCollectionView()
-        configCollectionViewLayout()
         requestToNaverShopping(start: start, sort: nowSort.rawValue)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         likeList = UserDefaultsManager.shared.getLikeList()
         collectionView.reloadData()
+    }
+}
+
+extension ResultViewController: ConfigConstraints {
+    func configConstraints() {
+        totalLabel.snp.makeConstraints { make in
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(8)
+            make.height.equalTo(22)
+        }
+        simButton.snp.makeConstraints { make in
+            make.top.equalTo(totalLabel.snp.bottom).offset(8)
+            make.leading.equalTo(view).offset(8)
+            make.height.equalTo(33)
+            make.width.equalTo(50)
+        }
+        dateButton.snp.makeConstraints { make in
+            make.top.equalTo(totalLabel.snp.bottom).offset(8)
+            make.leading.equalTo(simButton.snp.trailing).offset(8)
+            make.height.equalTo(33)
+            make.width.equalTo(50)
+        }
+        dscButton.snp.makeConstraints { make in
+            make.top.equalTo(totalLabel.snp.bottom).offset(8)
+            make.leading.equalTo(dateButton.snp.trailing).offset(8)
+            make.height.equalTo(33)
+            make.width.equalTo(70)
+        }
+        ascButton.snp.makeConstraints { make in
+            make.top.equalTo(totalLabel.snp.bottom).offset(8)
+            make.leading.equalTo(dscButton.snp.trailing).offset(8)
+            make.height.equalTo(33)
+            make.width.equalTo(70)
+        }
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(ascButton.snp.bottom).offset(8)
+            make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 }
 
@@ -66,11 +102,11 @@ extension ResultViewController: DesignViews {
             buttons[idx].layer.borderWidth = 1
             buttons[idx].layer.cornerRadius = 8
             buttons[idx].titleLabel?.font = FontDesign.small.light
-            buttons[idx].tintColor = ColorDesign.text.fill
+            buttons[idx].setTitleColor(ColorDesign.text.fill, for: .normal)
             buttons[idx].tag = idx
             buttons[idx].addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
         }
-        simButton.tintColor = ColorDesign.bgc.fill
+        simButton.setTitleColor(ColorDesign.bgc.fill, for: .normal)
         simButton.backgroundColor = ColorDesign.text.fill
     }
 }
@@ -86,10 +122,10 @@ extension ResultViewController: ConfigButtonClicked {
         collectionView.setContentOffset(.zero, animated: false)
         for button in buttons {
             if button == sender {
-                button.tintColor = ColorDesign.bgc.fill
+                button.setTitleColor(ColorDesign.bgc.fill, for: .normal)
                 button.backgroundColor = ColorDesign.text.fill
             } else {
-                button.tintColor = ColorDesign.text.fill
+                button.setTitleColor(ColorDesign.text.fill, for: .normal)
                 button.backgroundColor = ColorDesign.bgc.fill
             }
         }
@@ -125,8 +161,7 @@ extension ResultViewController: UICollectionViewDelegate, UICollectionViewDataSo
         collectionView.dataSource = self
         collectionView.prefetchDataSource = self
         
-        let xib = UINib(nibName: ResultCollectionViewCell.identifier, bundle: nil)
-        collectionView.register(xib, forCellWithReuseIdentifier: ResultCollectionViewCell.identifier)
+        collectionView.register(ResultCollectionViewCell.self, forCellWithReuseIdentifier: ResultCollectionViewCell.identifier)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -144,8 +179,7 @@ extension ResultViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let sb = UIStoryboard(name: DetailViewController.sbIdentifier, bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: DetailViewController.identifier) as! DetailViewController
+        let vc = DetailViewController()
         
         vc.itemTitle = list.items[indexPath.row].title
         vc.productId = list.items[indexPath.row].productId
@@ -153,7 +187,7 @@ extension ResultViewController: UICollectionViewDelegate, UICollectionViewDataSo
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func configCollectionViewLayout() {
+    func configCollectionViewLayout() -> UICollectionViewLayout{
         let layout = UICollectionViewFlowLayout()
         let space: CGFloat = 8
         let deviceWidth = UIScreen.main.bounds.width
@@ -164,7 +198,7 @@ extension ResultViewController: UICollectionViewDelegate, UICollectionViewDataSo
         layout.minimumLineSpacing = space * 2
         layout.minimumInteritemSpacing = space
         
-        collectionView.collectionViewLayout = layout
+        return layout
     }
 }
 

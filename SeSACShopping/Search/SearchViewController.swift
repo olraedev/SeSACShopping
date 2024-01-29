@@ -32,11 +32,10 @@ class SearchViewController: UIViewController {
         recentView.addSubviews([recentLabel, allEraseButton, recentTableView])
         designNavigationItem()
         designViews()
-        setupConstraints()
+        configConstraints()
         configTableView()
         changeView()
         configCollectionView()
-        configCollectionViewLayout()
     }
 }
 
@@ -102,8 +101,8 @@ extension SearchViewController: DesignViews {
     }
 }
 
-extension SearchViewController: SetupConstraints {
-    func setupConstraints() {
+extension SearchViewController: ConfigConstraints {
+    func configConstraints() {
         searchBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(8)
             make.horizontalEdges.equalTo(view)
@@ -213,10 +212,9 @@ extension SearchViewController: MyDefinedFunctions {
     
     func pushResultViewController(keyword: String) {
         // 검색 결과 화면으로 이동
-        let sb = UIStoryboard(name: ResultViewController.sbIdentifier, bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: ResultViewController.identifier) as! ResultViewController
-        
+        let vc = ResultViewController()
         vc.keyword = keyword
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     

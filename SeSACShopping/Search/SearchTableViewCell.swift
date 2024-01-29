@@ -17,7 +17,7 @@ class SearchTableViewCell: UITableViewCell {
         
         contentView.addSubviews([magnifyImageView, keywordLabel, eraseButton])
         configureCell()
-        setupConstraints()
+        configConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -45,8 +45,8 @@ extension SearchTableViewCell {
     }
 }
 
-extension SearchTableViewCell: SetupConstraints {
-    func setupConstraints() {
+extension SearchTableViewCell: ConfigConstraints {
+    func configConstraints() {
         magnifyImageView.snp.makeConstraints { make in
             make.centerY.equalTo(contentView)
             make.leading.equalTo(contentView).offset(16)

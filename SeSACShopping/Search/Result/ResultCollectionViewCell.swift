@@ -9,17 +9,51 @@ import UIKit
 import Kingfisher
 
 class ResultCollectionViewCell: UICollectionViewCell {
-
-    @IBOutlet var itemImageView: UIImageView!
-    @IBOutlet var likeButton: UIButton!
-    @IBOutlet var mallNameLabel: UILabel!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var priceLabel: UILabel!
+    let itemImageView = UIImageView()
+    let likeButton = UIButton()
+    let mallNameLabel = UILabel()
+    let titleLabel = UILabel()
+    let priceLabel = UILabel()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
+        self.addSubviews([itemImageView, likeButton, mallNameLabel, titleLabel, priceLabel])
         configureCell()
+        configConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension ResultCollectionViewCell: ConfigConstraints{
+    func configConstraints() {
+        itemImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.size.equalTo(170)
+        }
+        likeButton.snp.makeConstraints { make in
+            make.size.equalTo(35)
+            make.trailing.equalTo(itemImageView.snp.trailing).inset(8)
+            make.bottom.equalTo(itemImageView.snp.bottom).inset(8)
+        }
+        mallNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(itemImageView.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(itemImageView)
+            make.height.equalTo(11)
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(mallNameLabel.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(itemImageView)
+            make.height.greaterThanOrEqualTo(22)
+        }
+        priceLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(itemImageView)
+            make.height.equalTo(22)
+        }
     }
 }
 

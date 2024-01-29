@@ -8,10 +8,8 @@
 import UIKit
 import WebKit
 
-class DetailViewController: UIViewController, ConfigStoryBoardIdentifier{
-    static var sbIdentifier: String = "Detail"
-    
-    @IBOutlet var webView: WKWebView!
+class DetailViewController: UIViewController {
+    let webView = WKWebView()
     
     var itemTitle: String = ""
     var productId: String = ""
@@ -21,8 +19,18 @@ class DetailViewController: UIViewController, ConfigStoryBoardIdentifier{
         super.viewDidLoad()
         
         setBackgroundColor()
+        view.addSubview(webView)
         designViews()
         designNavigationItem()
+        configConstraints()
+    }
+}
+
+extension DetailViewController: ConfigConstraints {
+    func configConstraints() {
+        webView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 }
 
