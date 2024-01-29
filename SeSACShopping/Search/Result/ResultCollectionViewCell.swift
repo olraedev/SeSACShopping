@@ -41,7 +41,7 @@ extension ResultCollectionViewCell: ConfigConstraints{
         }
         mallNameLabel.snp.makeConstraints { make in
             make.top.equalTo(itemImageView.snp.bottom).offset(8)
-            make.horizontalEdges.equalTo(itemImageView)
+            make.horizontalEdges.equalTo(itemImageView.snp.horizontalEdges)
             make.height.equalTo(11)
         }
         titleLabel.snp.makeConstraints { make in
@@ -59,12 +59,11 @@ extension ResultCollectionViewCell: ConfigConstraints{
 
 extension ResultCollectionViewCell {
     func configureCell() {
-        itemImageView.contentMode = .scaleAspectFill
+        itemImageView.contentMode = .scaleToFill
         itemImageView.layer.cornerRadius = 8
         
-        likeButton.layer.cornerRadius = likeButton.frame.width / 2
-        likeButton.backgroundColor = .clear
-        likeButton.tintColor = ColorDesign.bgc.fill
+        likeButton.backgroundColor = ColorDesign.clear.fill
+        likeButton.tintColor = ColorDesign.point.fill
         
         mallNameLabel.textColor = ColorDesign.text.fill
         mallNameLabel.font = FontDesign.smallest.light

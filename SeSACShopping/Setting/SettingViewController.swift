@@ -8,7 +8,7 @@
 import UIKit
 
 class SettingViewController: UIViewController {
-    let tableView = UITableView()
+    let tableView = UITableView(frame: .zero, style: .insetGrouped)
 
     override func viewDidLoad() {
         super.viewDidLoad()

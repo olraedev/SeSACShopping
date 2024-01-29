@@ -29,16 +29,13 @@ class InfoTableViewCell: UITableViewCell {
 
 extension InfoTableViewCell: ConfigConstraints {
     func configConstraints() {
-        contentView.snp.makeConstraints { make in
-            make.height.equalTo(100)
-        }
         profileImageView.snp.makeConstraints { make in
-            make.top.leading.equalTo(contentView).inset(16)
+            make.verticalEdges.leading.equalTo(contentView).inset(24)
             make.size.equalTo(60)
         }
         nicknameLabel.snp.makeConstraints { make in
             make.leading.equalTo(profileImageView.snp.trailing).offset(32)
-            make.top.equalTo(contentView).offset(16)
+            make.top.equalTo(contentView).offset(24)
             make.height.equalTo(33)
         }
         likeLabel.snp.makeConstraints { make in

@@ -34,7 +34,7 @@ extension SettingTableViewCell: ConfigConstraints {
     func configConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(contentView)
-            make.leading.equalTo(contentView).offset(16)
+            make.leading.equalTo(contentView).offset(24)
         }
     }
 }
