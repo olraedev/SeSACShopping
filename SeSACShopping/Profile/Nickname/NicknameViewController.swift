@@ -10,15 +10,14 @@
  */
 
 import UIKit
+import TextFieldEffects
 
-class NicknameViewController: UIViewController, ConfigStoryBoardIdentifier {
-    static var sbIdentifier: String = "Nickname"
-
-    @IBOutlet var profileImageView: UIImageView!
-    @IBOutlet var cameraImageView: UIImageView!
-    @IBOutlet var inputTextField: UITextField!
-    @IBOutlet var stateLabel: UILabel!
-    @IBOutlet var completeButton: UIButton!
+class NicknameViewController: UIViewController {
+    let profileImageView = UIImageView()
+    let cameraImageView = UIImageView()
+    let inputTextField = HoshiTextField()
+    let stateLabel = UILabel()
+    let completeButton = PointColorButton()
     
     var available: Bool = true
     var nowImage: String = ""
@@ -27,8 +26,10 @@ class NicknameViewController: UIViewController, ConfigStoryBoardIdentifier {
         super.viewDidLoad()
         
         setBackgroundColor()
+        view.addSubviews([profileImageView, cameraImageView, inputTextField, stateLabel, completeButton])
         designNavigationItem()
         designViews()
+        setupConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +41,35 @@ class NicknameViewController: UIViewController, ConfigStoryBoardIdentifier {
         let nickname = UserDefaultsManager.shared.getStringValue(.nickname)
         
         inputTextField.text = nickname
+    }
+}
+
+extension NicknameViewController: SetupConstraints {
+    func setupConstraints() {
+        profileImageView.snp.makeConstraints { make in
+            make.centerX.equalTo(view)
+            make.size.equalTo(120)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(32)
+        }
+        cameraImageView.snp.makeConstraints { make in
+            make.bottom.trailing.equalTo(profileImageView)
+            make.size.equalTo(30)
+        }
+        inputTextField.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view).inset(24)
+            make.top.equalTo(cameraImageView.snp.bottom).offset(40)
+            make.height.equalTo(66)
+        }
+        stateLabel.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view).inset(32)
+            make.top.equalTo(inputTextField.snp.bottom).offset(8)
+            make.height.equalTo(22)
+        }
+        completeButton.snp.makeConstraints { make in
+            make.top.equalTo(stateLabel.snp.bottom).offset(24)
+            make.horizontalEdges.equalTo(view).inset(24)
+            make.height.equalTo(44)
+        }
     }
 }
 
@@ -72,11 +102,15 @@ extension NicknameViewController: DesignViews {
         inputTextField.borderStyle = .none
         inputTextField.textColor = ColorDesign.text.fill
         inputTextField.font = FontDesign.biggest.light
+        inputTextField.borderInactiveColor = ColorDesign.text.fill
+        inputTextField.borderActiveColor = ColorDesign.point.fill
+        inputTextField.placeholderColor = .systemGray
+        inputTextField.placeholderFontScale = 1.1
         
         stateLabel.font = FontDesign.mid.light
         stateLabel.isHidden = true
         
-        designPointColorButton(completeButton, title: "완료")
+        completeButton.setTitle("완료", for: .normal)
         completeButton.addTarget(self, action: #selector(completeButtonClicked), for: .touchUpInside)
     }
     

@@ -12,7 +12,7 @@ class OnboardViewController: UIViewController {
 
     let titleImageView = UIImageView()
     let mainImageView = UIImageView()
-    let startButton = UIButton()
+    let startButton = PointColorButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,7 @@ extension OnboardViewController: DesignViews {
         titleImageView.contentMode = .scaleAspectFit
         titleImageView.image = .sesacShopping
         mainImageView.image = .onboarding
-        designPointColorButton(startButton, title: "시작하기")
+        startButton.setTitle("시작하기", for: .normal)
         startButton.addTarget(self, action: #selector(startButtonClicked), for: .touchUpInside)
     }
 }
@@ -60,8 +60,7 @@ extension OnboardViewController: SetupConstraints {
 
 extension OnboardViewController: ConfigButtonClicked {
     @objc func startButtonClicked() {
-        let sb = UIStoryboard(name: NicknameViewController.sbIdentifier, bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: NicknameViewController.identifier) as! NicknameViewController
+        let vc = NicknameViewController()
 
         navigationController?.pushViewController(vc, animated: true)
     }

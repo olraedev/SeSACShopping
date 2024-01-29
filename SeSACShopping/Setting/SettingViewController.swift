@@ -79,8 +79,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == IndexPath(row: 0, section: 0) {
-            let sb = UIStoryboard(name: NicknameViewController.sbIdentifier, bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: NicknameViewController.identifier) as! NicknameViewController
+            let vc = UINavigationController(rootViewController: NicknameViewController())
             
             navigationController?.pushViewController(vc, animated: true)
         }

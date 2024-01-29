@@ -11,7 +11,6 @@
 		EC1212912B5FE25A00F6221D /* RecCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC12128F2B5FE25A00F6221D /* RecCollectionViewCell.swift */; };
 		EC1212922B5FE25A00F6221D /* RecCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC1212902B5FE25A00F6221D /* RecCollectionViewCell.xib */; };
 		EC1212942B5FE34F00F6221D /* Recommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1212932B5FE34F00F6221D /* Recommendation.swift */; };
-		EC2F1ACD2B5954FF004221A8 /* Nickname.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC2F1ACC2B5954FF004221A8 /* Nickname.storyboard */; };
 		EC2F1AD22B595916004221A8 /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2F1AD12B595916004221A8 /* NicknameViewController.swift */; };
 		EC2F1AD52B596539004221A8 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2F1AD42B596539004221A8 /* UserDefaultsManager.swift */; };
 		EC3B0CA32B5CFBC50000E0CA /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3B0CA22B5CFBC50000E0CA /* APIManager.swift */; };
@@ -43,6 +42,7 @@
 		EC6DF0F42B593F8D00F7649A /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DF0F32B593F8D00F7649A /* APIKey.swift */; };
 		EC6DF0F92B5948C200F7649A /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DF0F82B5948C200F7649A /* OnboardViewController.swift */; };
 		EC6DF0FC2B59495500F7649A /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DF0FB2B59495500F7649A /* Protocols.swift */; };
+		ECBDD3C22B678CA1003C029C /* PointColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBDD3C12B678CA1003C029C /* PointColorButton.swift */; };
 		ECCE64D82B597C6E000D5F83 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = ECCE64D72B597C6E000D5F83 /* TextFieldEffects */; };
 		ECCE64DB2B597DD0000D5F83 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE64DA2B597DD0000D5F83 /* Extensions.swift */; };
 		ECF72B3A2B650DF80017C9E0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = ECF72B392B650DF80017C9E0 /* SnapKit */; };
@@ -61,7 +61,6 @@
 		EC12128F2B5FE25A00F6221D /* RecCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecCollectionViewCell.swift; sourceTree = "<group>"; };
 		EC1212902B5FE25A00F6221D /* RecCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecCollectionViewCell.xib; sourceTree = "<group>"; };
 		EC1212932B5FE34F00F6221D /* Recommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recommendation.swift; sourceTree = "<group>"; };
-		EC2F1ACC2B5954FF004221A8 /* Nickname.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Nickname.storyboard; sourceTree = "<group>"; };
 		EC2F1AD12B595916004221A8 /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		EC2F1AD42B596539004221A8 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		EC3B0CA22B5CFBC50000E0CA /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -93,6 +92,7 @@
 		EC6DF0F32B593F8D00F7649A /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		EC6DF0F82B5948C200F7649A /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		EC6DF0FB2B59495500F7649A /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		ECBDD3C12B678CA1003C029C /* PointColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointColorButton.swift; sourceTree = "<group>"; };
 		ECCE64DA2B597DD0000D5F83 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ECF908072B5D309A00C5C2C7 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		ECF908092B5D30BE00C5C2C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -133,7 +133,6 @@
 		EC2F1ACB2B5954AC004221A8 /* Nickname */ = {
 			isa = PBXGroup;
 			children = (
-				EC2F1ACC2B5954FF004221A8 /* Nickname.storyboard */,
 				EC2F1AD12B595916004221A8 /* NicknameViewController.swift */,
 				EC4276E72B5A664900ADADBD /* NicknameState.swift */,
 			);
@@ -230,6 +229,7 @@
 			children = (
 				EC6DF0EA2B593B9000F7649A /* .gitignore */,
 				EC12128E2B5F92C800F6221D /* API */,
+				ECBDD3C02B678C7C003C029C /* Custom */,
 				EC2F1AD32B596512004221A8 /* UserDefault */,
 				EC6DF0EE2B593CB000F7649A /* Design */,
 				EC6DF0FA2B59492E00F7649A /* Protocol */,
@@ -272,6 +272,14 @@
 				EC6DF0FB2B59495500F7649A /* Protocols.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		ECBDD3C02B678C7C003C029C /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				ECBDD3C12B678CA1003C029C /* PointColorButton.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		ECCE64D92B597DB9000D5F83 /* Extension */ = {
@@ -368,7 +376,6 @@
 				EC6DF0EB2B593B9000F7649A /* .gitignore in Resources */,
 				EC6DF0E12B5938A600F7649A /* LaunchScreen.storyboard in Resources */,
 				EC4277142B5B984500ADADBD /* ResultCollectionViewCell.xib in Resources */,
-				EC2F1ACD2B5954FF004221A8 /* Nickname.storyboard in Resources */,
 				EC6DF0DE2B5938A600F7649A /* Assets.xcassets in Resources */,
 				EC4277082B5B95C200ADADBD /* Result.storyboard in Resources */,
 				EC6DF0DC2B5938A400F7649A /* Main.storyboard in Resources */,
@@ -413,6 +420,7 @@
 				EC4276F42B5A73EB00ADADBD /* ImageCollectionViewCell.swift in Sources */,
 				EC4276E82B5A664900ADADBD /* NicknameState.swift in Sources */,
 				ECCE64DB2B597DD0000D5F83 /* Extensions.swift in Sources */,
+				ECBDD3C22B678CA1003C029C /* PointColorButton.swift in Sources */,
 				EC4277132B5B984500ADADBD /* ResultCollectionViewCell.swift in Sources */,
 				EC6DF0D72B5938A400F7649A /* SceneDelegate.swift in Sources */,
 				EC42770A2B5B95ED00ADADBD /* ResultViewController.swift in Sources */,
