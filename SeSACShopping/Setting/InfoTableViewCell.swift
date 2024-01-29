@@ -8,7 +8,7 @@
 import UIKit
 
 class InfoTableViewCell: UITableViewCell {
-    let profileImageView = UIImageView()
+    let profileImageView = PointColorBorderImageView(frame: .zero)
     let nicknameLabel = UILabel()
     let likeLabel = UILabel()
     let textsLabel = UILabel()
@@ -57,8 +57,6 @@ extension InfoTableViewCell: ConfigConstraints {
 extension InfoTableViewCell {
     func designCell() {
         selectionStyle = .none
-        designCircleImageView(profileImageView)
-        designPointBorderImageView(profileImageView)
         nicknameLabel.textColor = ColorDesign.text.fill
         nicknameLabel.font = FontDesign.biggest.bold
         likeLabel.textColor = ColorDesign.point.fill

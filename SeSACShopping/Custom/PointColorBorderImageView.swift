@@ -22,9 +22,9 @@ class PointColorBorderImageView: UIImageView {
 
 extension PointColorBorderImageView: DesignViews {
     func designViews() {
+        clipsToBounds = true
         layer.borderWidth = 5
         layer.borderColor = ColorDesign.point.fill.cgColor
-        clipsToBounds = true
         DispatchQueue.main.async {
             self.layer.cornerRadius = self.frame.width / 2
         }

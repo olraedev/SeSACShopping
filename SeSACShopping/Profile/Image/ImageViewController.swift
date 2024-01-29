@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class ImageViewController: UIViewController {
-    let selectImageView = UIImageView()
+    lazy var selectImageView = PointColorBorderImageView(frame: .zero)
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: configCollectionViewLayout())
     
     var selectedImage: String = ""
@@ -29,8 +29,6 @@ class ImageViewController: UIViewController {
 extension ImageViewController: DesignViews {
     func designViews() {
         selectImageView.image = UIImage(named: selectedImage)
-        designCircleImageView(selectImageView)
-        designPointBorderImageView(selectImageView)
         
         collectionView.backgroundColor = ColorDesign.clear.fill
     }
@@ -47,7 +45,7 @@ extension ImageViewController: ConfigConstraints {
         selectImageView.snp.makeConstraints { make in
             make.centerX.equalTo(view.safeAreaLayoutGuide)
             make.top.equalTo(view.safeAreaLayoutGuide).offset(32)
-            make.size.equalTo(100)
+            make.size.equalTo(150)
         }
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(selectImageView.snp.bottom).offset(32)

@@ -13,13 +13,12 @@ import UIKit
 import TextFieldEffects
 
 class NicknameViewController: UIViewController {
-    let profileImageView = UIImageView()
+    lazy var profileImageView = PointColorBorderImageView(frame: .zero)
     let cameraImageView = UIImageView()
     let inputTextField = HoshiTextField()
     let stateLabel = UILabel()
     let completeButton = PointColorButton()
     
-    var available: Bool = true
     var nowImage: String = ""
     
     override func viewDidLoad() {
@@ -82,8 +81,6 @@ extension NicknameViewController: UITextFieldDelegate {
         
         stateLabel.text = state.text
         stateLabel.textColor = state.color
-        
-        available = state == .available ? true : false
     }
 }
 // 아웃렛 변수, 네비게이션 설정 관련
@@ -93,8 +90,6 @@ extension NicknameViewController: DesignViews {
         view.addGestureRecognizer(tapGesture)
         
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileImageViewTapped))
-        designCircleImageView(profileImageView)
-        designPointBorderImageView(profileImageView)
         profileImageView.addGestureRecognizer(tapGesture)
         profileImageView.isUserInteractionEnabled = true
         
@@ -139,7 +134,12 @@ extension NicknameViewController: ConfigButtonClicked {
     
     @objc func completeButtonClicked() {
         // 닉네임이 조건에 맞지 않을때 경고창 보여주고 textfield 글자 다 지우기
-        if !available {
+        guard let text = inputTextField.text else {
+            presentAlert()
+            return
+        }
+        
+        if isCheck(text: text) != .available {
             inputTextField.text = ""
             presentAlert()
         } else {
