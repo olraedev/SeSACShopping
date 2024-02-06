@@ -15,22 +15,10 @@ enum FontDesign: CGFloat {
     case biggest
     
     var light: UIFont {
-        switch self {
-        case .smallest: UIFont.systemFont(ofSize: FontDesign.smallest.rawValue)
-        case .small: UIFont.systemFont(ofSize: FontDesign.small.rawValue)
-        case .mid: UIFont.systemFont(ofSize: FontDesign.mid.rawValue)
-        case .big: UIFont.systemFont(ofSize: FontDesign.big.rawValue)
-        case .biggest: UIFont.systemFont(ofSize: FontDesign.biggest.rawValue)
-        }
+        return UIFont.systemFont(ofSize: self.rawValue)
     }
     
     var bold: UIFont {
-        switch self {
-        case .smallest: UIFont.boldSystemFont(ofSize: FontDesign.smallest.rawValue)
-        case .small: UIFont.boldSystemFont(ofSize: FontDesign.small.rawValue)
-        case .mid: UIFont.boldSystemFont(ofSize: FontDesign.mid.rawValue)
-        case .big: UIFont.boldSystemFont(ofSize: FontDesign.big.rawValue)
-        case .biggest: UIFont.boldSystemFont(ofSize: FontDesign.biggest.rawValue)
-        }
+        return UIFont.boldSystemFont(ofSize: self.rawValue)
     }
 }
