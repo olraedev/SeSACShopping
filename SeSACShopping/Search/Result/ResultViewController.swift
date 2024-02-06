@@ -18,7 +18,7 @@ class ResultViewController: UIViewController {
     
     lazy var buttons: [UIButton] = [simButton, dateButton, dscButton, ascButton]
     var keyword: String = ""
-    var list: Info = Info(total: 0, start: 0, display: 0, items: [])
+    var list: NaverShoppingInfo = NaverShoppingInfo(total: 0, start: 0, display: 0, items: [])
     var likeList: [String] = UserDefaultsManager.shared.getLikeList()
     var start: Int = 1
     var nowSort: Sort = .sim
@@ -209,10 +209,27 @@ extension ResultViewController: UICollectionViewDataSourcePrefetching {
         for item in indexPaths {
             if list.items.count - 3 == item.row {
                 start += 30
-                APIManager().requestNaverShopping(query: keyword, display: 30, start: start, sort: nowSort.rawValue) { info in
-                    self.list.items.append(contentsOf: info.items)
-                    self.collectionView.reloadData()
+                APISessionManager.shared.requestToNaverShopping(query: keyword, display: 30, start: start, sort: nowSort.rawValue) { info, error in
+                    if let error = error {
+                        switch error {
+                        case .failedRequest: self.presentAlert(title: "네트워크 오류", message: NaverShoppingError.failedRequest.errorMessage)
+                        case .invalidResponse: self.presentAlert(title: "네트워크 오류", message: NaverShoppingError.invalidResponse.errorMessage)
+                        case .noData: self.presentAlert(title: "네트워크 오류", message: NaverShoppingError.noData.errorMessage)
+                        }
+                    } else {
+                        guard let info else {
+                            self.presentAlert(title: "네트워크 오류", message: "잠시 후 다시 시도해주세요.")
+                            return
+                        }
+                        self.list.items.append(contentsOf: info.items)
+                        DispatchQueue.main.async { self.collectionView.reloadData() }
+                    }
+                    
                 }
+//                APIManager().requestNaverShopping(query: keyword, display: 30, start: start, sort: nowSort.rawValue) { info in
+//                    self.list.items.append(contentsOf: info.items)
+//                    self.collectionView.reloadData()
+//                }
             }
         }
     }

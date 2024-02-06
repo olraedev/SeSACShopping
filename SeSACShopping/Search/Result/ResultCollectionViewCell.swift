@@ -76,7 +76,7 @@ extension ResultCollectionViewCell {
         priceLabel.font = FontDesign.mid.bold
     }
     
-    func configureCell(_ item: Item, likeList: [String]) {
+    func configureCell(_ item: NaverShoppingItem, likeList: [String]) {
         let url = URL(string: item.image)
         
         itemImageView.kf.setImage(with: url)

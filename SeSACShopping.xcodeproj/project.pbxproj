@@ -36,6 +36,9 @@
 		EC6DF0FC2B59495500F7649A /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DF0FB2B59495500F7649A /* Protocols.swift */; };
 		EC9A23FF2B67CE2F00F77D11 /* PointColorBorderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9A23FE2B67CE2F00F77D11 /* PointColorBorderImageView.swift */; };
 		EC9A25422B7247C700F77D11 /* NicknameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9A25412B7247C700F77D11 /* NicknameError.swift */; };
+		EC9A25442B72533200F77D11 /* APISessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9A25432B72533200F77D11 /* APISessionManager.swift */; };
+		EC9A25462B72564B00F77D11 /* NaverShoppingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9A25452B72564B00F77D11 /* NaverShoppingInfo.swift */; };
+		EC9A25482B7258F900F77D11 /* NaverShoppingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9A25472B7258F900F77D11 /* NaverShoppingError.swift */; };
 		ECBDD3C22B678CA1003C029C /* PointColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBDD3C12B678CA1003C029C /* PointColorButton.swift */; };
 		ECCE64D82B597C6E000D5F83 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = ECCE64D72B597C6E000D5F83 /* TextFieldEffects */; };
 		ECCE64DB2B597DD0000D5F83 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE64DA2B597DD0000D5F83 /* Extensions.swift */; };
@@ -77,6 +80,9 @@
 		EC6DF0FB2B59495500F7649A /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		EC9A23FE2B67CE2F00F77D11 /* PointColorBorderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointColorBorderImageView.swift; sourceTree = "<group>"; };
 		EC9A25412B7247C700F77D11 /* NicknameError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameError.swift; sourceTree = "<group>"; };
+		EC9A25432B72533200F77D11 /* APISessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISessionManager.swift; sourceTree = "<group>"; };
+		EC9A25452B72564B00F77D11 /* NaverShoppingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverShoppingInfo.swift; sourceTree = "<group>"; };
+		EC9A25472B7258F900F77D11 /* NaverShoppingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverShoppingError.swift; sourceTree = "<group>"; };
 		ECBDD3C12B678CA1003C029C /* PointColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointColorButton.swift; sourceTree = "<group>"; };
 		ECCE64DA2B597DD0000D5F83 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ECF908092B5D30BE00C5C2C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -106,8 +112,11 @@
 		EC12128E2B5F92C800F6221D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				EC9A25452B72564B00F77D11 /* NaverShoppingInfo.swift */,
+				EC9A25472B7258F900F77D11 /* NaverShoppingError.swift */,
 				EC6DF0F32B593F8D00F7649A /* APIKey.swift */,
 				EC3B0CA22B5CFBC50000E0CA /* APIManager.swift */,
+				EC9A25432B72533200F77D11 /* APISessionManager.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -360,6 +369,8 @@
 			files = (
 				EC6DF0FC2B59495500F7649A /* Protocols.swift in Sources */,
 				EC6DF0F02B593CE700F7649A /* FontDesign.swift in Sources */,
+				EC9A25482B7258F900F77D11 /* NaverShoppingError.swift in Sources */,
+				EC9A25462B72564B00F77D11 /* NaverShoppingInfo.swift in Sources */,
 				ECF9080D2B5D3C1E00C5C2C7 /* InfoTableViewCell.swift in Sources */,
 				EC6DF0F22B593CF300F7649A /* ColorDesign.swift in Sources */,
 				EC1212942B5FE34F00F6221D /* Recommendation.swift in Sources */,
@@ -374,6 +385,7 @@
 				EC2F1AD52B596539004221A8 /* UserDefaultsManager.swift in Sources */,
 				EC9A25422B7247C700F77D11 /* NicknameError.swift in Sources */,
 				EC6DF0F42B593F8D00F7649A /* APIKey.swift in Sources */,
+				EC9A25442B72533200F77D11 /* APISessionManager.swift in Sources */,
 				EC4277012B5AC5DB00ADADBD /* SearchViewController.swift in Sources */,
 				ECF9080A2B5D30BE00C5C2C7 /* DetailViewController.swift in Sources */,
 				EC3B0CA32B5CFBC50000E0CA /* APIManager.swift in Sources */,
