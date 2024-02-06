@@ -74,10 +74,26 @@ extension NicknameViewController: ConfigConstraints {
 
 // 텍스트 필드 관련
 extension NicknameViewController: UITextFieldDelegate {
-    func textFieldDidChangeSelection(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         stateLabel.isHidden = false
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        var state: NicknameState = .available
         
-        let state = isCheck(text: textField.text!)
+        do {
+            let _ = try isCheck(text: textField.text!)
+            state = .available
+        } catch {
+            switch error {
+            case NicknameError.special: state = .special
+            case NicknameError.number: state = .number
+            case NicknameError.length: state = .length
+            case NicknameError.space: state = .space
+            default:
+                print("예상치 못한 에러")
+            }
+        }
         
         stateLabel.text = state.text
         stateLabel.textColor = state.color
@@ -135,24 +151,34 @@ extension NicknameViewController: ConfigButtonClicked {
     @objc func completeButtonClicked() {
         // 닉네임이 조건에 맞지 않을때 경고창 보여주고 textfield 글자 다 지우기
         guard let text = inputTextField.text else {
-            presentAlert()
+            inputTextField.text = ""
+            presentAlert(title: "에러", message: "닉네임이 조건에 부합하지 않습니다.")
             return
         }
         
-        if isCheck(text: text) != .available {
-            inputTextField.text = ""
-            presentAlert()
-        } else {
+        do {
+            let _ = try isCheck(text: text)
             UserDefaultsManager.shared.setStringValue(.nickname, value: inputTextField.text!)
             UserDefaultsManager.shared.setStringValue(.profile, value: nowImage)
             
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             let sceneDelegate = windowScene?.delegate as? SceneDelegate
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
+            let tabBarController = UITabBarController()
+            let searchViewController = UINavigationController(rootViewController: SearchViewController())
+            let settingViewController = UINavigationController(rootViewController: SettingViewController())
             
-            sceneDelegate?.window?.rootViewController = vc
+            searchViewController.tabBarItem = UITabBarItem(title: "검색", image: UIImage(systemName: "magnifyingglass"), tag: 0)
+            settingViewController.tabBarItem = UITabBarItem(title: "설정", image: UIImage(systemName: "person"), tag: 1)
+            
+            tabBarController.tabBar.tintColor = ColorDesign.point.fill
+            tabBarController.tabBar.backgroundColor = .clear
+            tabBarController.setViewControllers([searchViewController, settingViewController], animated: true)
+            
+            sceneDelegate?.window?.rootViewController = tabBarController
             sceneDelegate?.window?.makeKeyAndVisible()
+        } catch {
+            inputTextField.text = ""
+            presentAlert(title: "에러", message: "닉네임이 조건에 부합하지 않습니다.")
         }
     }
     
@@ -162,27 +188,23 @@ extension NicknameViewController: ConfigButtonClicked {
 }
 
 extension NicknameViewController: MyDefinedFunctions {
-    func presentAlert() {
-        let alert = UIAlertController(title: "에러", message: "닉네임이 조건에 부합하지 않습니다.", preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: "돌아가기", style: .cancel)
-        alert.addAction(cancelButton)
-        present(alert, animated: true)
-    }
-    
-    func isCheck(text: String) -> NicknameState {
+    func isCheck(text: String) throws -> Bool {
+        if text.contains(" ") {
+            throw NicknameError.space
+        }
         // @, #, $, % 특수문자가 들어 있을 경우
         if text.contains("@") || text.contains("#") || text.contains("$") || text.contains("%") {
-            return .special
+            throw NicknameError.special
         }
         // 숫자가 들어 있을 경우
         if text.contains("0") || text.contains("1") || text.contains("2") || text.contains("3") || text.contains("4") || text.contains("5") || text.contains("6") || text.contains("7") || text.contains("8") || text.contains("9") {
-            return .number
+            throw NicknameError.number
         }
         // 2글자 이상 10글자 미만이 아닐 경우
         if text.count < 2 || text.count >= 10 {
-            return .length
+            throw NicknameError.length
         }
         
-        return .available
+        return true
     }
 }

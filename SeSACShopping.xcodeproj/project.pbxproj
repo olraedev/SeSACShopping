@@ -35,6 +35,7 @@
 		EC6DF0F92B5948C200F7649A /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DF0F82B5948C200F7649A /* OnboardViewController.swift */; };
 		EC6DF0FC2B59495500F7649A /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6DF0FB2B59495500F7649A /* Protocols.swift */; };
 		EC9A23FF2B67CE2F00F77D11 /* PointColorBorderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9A23FE2B67CE2F00F77D11 /* PointColorBorderImageView.swift */; };
+		EC9A25422B7247C700F77D11 /* NicknameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9A25412B7247C700F77D11 /* NicknameError.swift */; };
 		ECBDD3C22B678CA1003C029C /* PointColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBDD3C12B678CA1003C029C /* PointColorButton.swift */; };
 		ECCE64D82B597C6E000D5F83 /* TextFieldEffects in Frameworks */ = {isa = PBXBuildFile; productRef = ECCE64D72B597C6E000D5F83 /* TextFieldEffects */; };
 		ECCE64DB2B597DD0000D5F83 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE64DA2B597DD0000D5F83 /* Extensions.swift */; };
@@ -75,6 +76,7 @@
 		EC6DF0F82B5948C200F7649A /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		EC6DF0FB2B59495500F7649A /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		EC9A23FE2B67CE2F00F77D11 /* PointColorBorderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointColorBorderImageView.swift; sourceTree = "<group>"; };
+		EC9A25412B7247C700F77D11 /* NicknameError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameError.swift; sourceTree = "<group>"; };
 		ECBDD3C12B678CA1003C029C /* PointColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointColorButton.swift; sourceTree = "<group>"; };
 		ECCE64DA2B597DD0000D5F83 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ECF908092B5D30BE00C5C2C7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -113,8 +115,9 @@
 		EC2F1ACB2B5954AC004221A8 /* Nickname */ = {
 			isa = PBXGroup;
 			children = (
-				EC2F1AD12B595916004221A8 /* NicknameViewController.swift */,
 				EC4276E72B5A664900ADADBD /* NicknameState.swift */,
+				EC9A25412B7247C700F77D11 /* NicknameError.swift */,
+				EC2F1AD12B595916004221A8 /* NicknameViewController.swift */,
 			);
 			path = Nickname;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				EC4276EF2B5A731900ADADBD /* ImageViewController.swift in Sources */,
 				ECF908142B5D3C3C00C5C2C7 /* SettingViewController.swift in Sources */,
 				EC2F1AD52B596539004221A8 /* UserDefaultsManager.swift in Sources */,
+				EC9A25422B7247C700F77D11 /* NicknameError.swift in Sources */,
 				EC6DF0F42B593F8D00F7649A /* APIKey.swift in Sources */,
 				EC4277012B5AC5DB00ADADBD /* SearchViewController.swift in Sources */,
 				ECF9080A2B5D30BE00C5C2C7 /* DetailViewController.swift in Sources */,
