@@ -30,10 +30,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = nav
             window?.makeKeyAndVisible()
         } else {
-            let sb = UIStoryboard(name: "Main", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
+            let tabBarController = UITabBarController()
+            let searchViewController = UINavigationController(rootViewController: SearchViewController())
+            let settingViewController = UINavigationController(rootViewController: SettingViewController())
             
-            window?.rootViewController = vc
+            searchViewController.tabBarItem = UITabBarItem(title: "검색", image: UIImage(systemName: "magnifyingglass"), tag: 0)
+            settingViewController.tabBarItem = UITabBarItem(title: "설정", image: UIImage(systemName: "person"), tag: 1)
+            
+            tabBarController.tabBar.tintColor = ColorDesign.point.fill
+            tabBarController.tabBar.backgroundColor = .clear
+            tabBarController.setViewControllers([searchViewController, settingViewController], animated: true)
+            
+            window?.rootViewController = tabBarController
             window?.makeKeyAndVisible()
         }
     }
