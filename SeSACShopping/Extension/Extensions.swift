@@ -7,7 +7,11 @@
 
 import UIKit
 
-extension UIView {
+extension UIView: ConfigIdentifier {
+    static var identifier: String {
+        return String(describing: self)
+    }
+    
     func addSubviews(_ views: [UIView]) {
         for view in views {
             self.addSubview(view)
@@ -22,26 +26,6 @@ extension UIViewController: ConfigIdentifier {
     
     func setBackgroundColor() {
         view.backgroundColor = ColorDesign.bgc.fill
-    }
-    
-    func designPointColorButton(_ button: UIButton, title: String) {
-        button.setTitle(title, for: .normal)
-        button.titleLabel?.font = FontDesign.big.bold
-        button.tintColor = ColorDesign.text.fill
-        button.backgroundColor = ColorDesign.point.fill
-        button.layer.cornerRadius = 8
-    }
-    
-    func designCircleImageView(_ imageView: UIImageView) {
-        DispatchQueue.main.async {
-            imageView.clipsToBounds = true
-            imageView.layer.cornerRadius = imageView.frame.width / 2
-        }
-    }
-    
-    func designPointBorderImageView(_ imageView: UIImageView) {
-        imageView.layer.borderWidth = 5
-        imageView.layer.borderColor = ColorDesign.point.fill.cgColor
     }
     
     func replaceTitle(_ title: String) -> String {
@@ -74,33 +58,11 @@ extension UIViewController: ConfigIdentifier {
     }
 }
 
-extension UICollectionViewCell: ConfigIdentifier {
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
+extension UICollectionViewCell {
     func replaceTitle(_ title: String) -> String {
         var text: String = title.replacingOccurrences(of: "<b>", with: "")
         text = text.replacingOccurrences(of:"</b>", with: "")
         
         return text
-    }
-}
-
-extension UITableViewCell: ConfigIdentifier {
-    static var identifier: String {
-        return String(describing: self)
-    }
-    
-    func designCircleImageView(_ imageView: UIImageView) {
-        DispatchQueue.main.async {
-            imageView.clipsToBounds = true
-            imageView.layer.cornerRadius = imageView.frame.width / 2
-        }
-    }
-    
-    func designPointBorderImageView(_ imageView: UIImageView) {
-        imageView.layer.borderWidth = 5
-        imageView.layer.borderColor = ColorDesign.point.fill.cgColor
     }
 }

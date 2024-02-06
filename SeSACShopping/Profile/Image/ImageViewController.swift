@@ -70,12 +70,11 @@ extension ImageViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCell.identifier, for: indexPath) as! ImageCollectionViewCell
         
         if selectedImage == Profile.images[indexPath.item] {
-            designPointBorderImageView(cell.profileImageView)
+            cell.profileImageView.layer.borderWidth = 5
         } else {
             cell.profileImageView.layer.borderWidth = 0
         }
         cell.configureCell(image: Profile.images[indexPath.item])
-        designCircleImageView(cell.profileImageView)
         
         return cell
     }

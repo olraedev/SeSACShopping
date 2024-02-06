@@ -31,22 +31,24 @@ class APISessionManager {
         url.setValue(APIKey.NaverClientSecret, forHTTPHeaderField: "X-Naver-Client-Secret")
         
         URLSession.shared.dataTask(with: url) { data, response, error in
-            if let _ = error {
-                completionHandler(nil, .failedRequest)
-                return
+            DispatchQueue.main.async {
+                if let _ = error {
+                    completionHandler(nil, .failedRequest)
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                    completionHandler(nil, .invalidResponse)
+                    return
+                }
+                
+                if let data = data, let castData = try? JSONDecoder().decode(NaverShoppingInfo.self, from: data) {
+                    completionHandler(castData, nil)
+                    return
+                }
+                
+                completionHandler(nil, .noData)
             }
-            
-            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                completionHandler(nil, .invalidResponse)
-                return
-            }
-            
-            if let data = data, let castData = try? JSONDecoder().decode(NaverShoppingInfo.self, from: data) {
-                completionHandler(castData, nil)
-                return
-            }
-            
-            completionHandler(nil, .noData)
         }.resume()
     }
 }

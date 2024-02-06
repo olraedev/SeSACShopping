@@ -8,7 +8,7 @@
 import UIKit
 
 class ImageCollectionViewCell: UICollectionViewCell {
-    let profileImageView = UIImageView()
+    let profileImageView = PointColorBorderImageView(frame: .zero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -14,7 +14,7 @@ import TextFieldEffects
 
 class NicknameViewController: UIViewController {
     lazy var profileImageView = PointColorBorderImageView(frame: .zero)
-    let cameraImageView = UIImageView()
+    let cameraImageView = PointColorBorderImageView(frame: .zero)
     let inputTextField = HoshiTextField()
     let stateLabel = UILabel()
     let completeButton = PointColorButton()
@@ -110,7 +110,7 @@ extension NicknameViewController: DesignViews {
         profileImageView.isUserInteractionEnabled = true
         
         cameraImageView.image = .camera
-        designCircleImageView(cameraImageView)
+        cameraImageView.layer.borderWidth = 0
         
         inputTextField.delegate = self
         inputTextField.placeholder = "닉네임을 입력해주세요 :)"

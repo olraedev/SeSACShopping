@@ -20,10 +20,6 @@ protocol ConfigIdentifier {
     static var identifier: String { get }
 }
 
-protocol ConfigStoryBoardIdentifier {
-    static var sbIdentifier: String { get }
-}
-
 @objc protocol ConfigButtonClicked {
     @objc optional func leftBarButtonClicked()
 }

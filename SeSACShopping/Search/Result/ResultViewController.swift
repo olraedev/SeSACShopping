@@ -222,7 +222,7 @@ extension ResultViewController: UICollectionViewDataSourcePrefetching {
                             return
                         }
                         self.list.items.append(contentsOf: info.items)
-                        DispatchQueue.main.async { self.collectionView.reloadData() }
+                        self.collectionView.reloadData()
                     }
                     
                 }
