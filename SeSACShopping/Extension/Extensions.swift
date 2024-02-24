@@ -17,6 +17,10 @@ extension UIView: ConfigIdentifier {
             self.addSubview(view)
         }
     }
+    
+    func setBackgroundColor() {
+        self.backgroundColor = ColorDesign.bgc.fill
+    }
 }
 
 extension UIViewController: ConfigIdentifier {
@@ -55,6 +59,24 @@ extension UIViewController: ConfigIdentifier {
         alert.addAction(cancelButton)
         
         self.present(alert, animated: true)
+    }
+    
+    func goToMainTabBarView() {
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+        let tabBarController = UITabBarController()
+        let searchViewController = UINavigationController(rootViewController: SearchViewController())
+        let settingViewController = UINavigationController(rootViewController: SettingViewController())
+        
+        searchViewController.tabBarItem = UITabBarItem(title: "검색", image: UIImage(systemName: "magnifyingglass"), tag: 0)
+        settingViewController.tabBarItem = UITabBarItem(title: "설정", image: UIImage(systemName: "person"), tag: 1)
+        
+        tabBarController.tabBar.tintColor = ColorDesign.point.fill
+        tabBarController.tabBar.backgroundColor = .clear
+        tabBarController.setViewControllers([searchViewController, settingViewController], animated: true)
+        
+        sceneDelegate?.window?.rootViewController = tabBarController
+        sceneDelegate?.window?.makeKeyAndVisible()
     }
 }
 

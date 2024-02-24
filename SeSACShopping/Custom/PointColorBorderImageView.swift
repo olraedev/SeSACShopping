@@ -18,6 +18,11 @@ class PointColorBorderImageView: UIImageView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = frame.width / 2
+    }
 }
 
 extension PointColorBorderImageView: DesignViews {
@@ -25,8 +30,5 @@ extension PointColorBorderImageView: DesignViews {
         clipsToBounds = true
         layer.borderWidth = 5
         layer.borderColor = ColorDesign.point.fill.cgColor
-        DispatchQueue.main.async {
-            self.layer.cornerRadius = self.frame.width / 2
-        }
     }
 }
