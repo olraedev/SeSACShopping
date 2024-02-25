@@ -13,18 +13,16 @@ class OnboardViewController: UIViewController {
     let titleImageView = UIImageView()
     let mainImageView = UIImageView()
     let startButton = PointColorButton()
+    let repository = RealmRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setBackgroundColor()
         view.addSubviews([titleImageView, mainImageView, startButton])
         designViews()
         configConstraints()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        UserDefaultsManager.shared.removeAll()
+        repository.createUser()
     }
 }
 

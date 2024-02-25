@@ -40,6 +40,9 @@
 		EC8FB8342B8A0397001F2EBD /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8FB8332B8A0397001F2EBD /* RealmModel.swift */; };
 		EC8FB8372B8A03E0001F2EBD /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = EC8FB8362B8A03E0001F2EBD /* Realm */; };
 		EC8FB8392B8A03E0001F2EBD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC8FB8382B8A03E0001F2EBD /* RealmSwift */; };
+		EC8FB83B2B8A4076001F2EBD /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8FB83A2B8A4076001F2EBD /* RealmRepository.swift */; };
+		EC8FB83F2B8A54DA001F2EBD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8FB83E2B8A54DA001F2EBD /* SearchView.swift */; };
+		EC8FB8412B8B21C9001F2EBD /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8FB8402B8B21C8001F2EBD /* ResultView.swift */; };
 		EC9A23FF2B67CE2F00F77D11 /* PointColorBorderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9A23FE2B67CE2F00F77D11 /* PointColorBorderImageView.swift */; };
 		EC9A25422B7247C700F77D11 /* NicknameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9A25412B7247C700F77D11 /* NicknameError.swift */; };
 		EC9A25442B72533200F77D11 /* APISessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9A25432B72533200F77D11 /* APISessionManager.swift */; };
@@ -87,6 +90,9 @@
 		EC8FB82B2B89F80B001F2EBD /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		EC8FB82D2B89F85C001F2EBD /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		EC8FB8332B8A0397001F2EBD /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		EC8FB83A2B8A4076001F2EBD /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
+		EC8FB83E2B8A54DA001F2EBD /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		EC8FB8402B8B21C8001F2EBD /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		EC9A23FE2B67CE2F00F77D11 /* PointColorBorderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointColorBorderImageView.swift; sourceTree = "<group>"; };
 		EC9A25412B7247C700F77D11 /* NicknameError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameError.swift; sourceTree = "<group>"; };
 		EC9A25432B72533200F77D11 /* APISessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISessionManager.swift; sourceTree = "<group>"; };
@@ -175,6 +181,7 @@
 			children = (
 				ECF908062B5D308D00C5C2C7 /* Detail */,
 				EC4277062B5B95A700ADADBD /* Result */,
+				EC8FB83E2B8A54DA001F2EBD /* SearchView.swift */,
 				EC4277002B5AC5DB00ADADBD /* SearchViewController.swift */,
 				EC4277022B5AD96200ADADBD /* SearchTableViewCell.swift */,
 				EC12128F2B5FE25A00F6221D /* RecCollectionViewCell.swift */,
@@ -197,6 +204,7 @@
 		EC4277062B5B95A700ADADBD /* Result */ = {
 			isa = PBXGroup;
 			children = (
+				EC8FB8402B8B21C8001F2EBD /* ResultView.swift */,
 				EC4277092B5B95ED00ADADBD /* ResultViewController.swift */,
 				EC4277112B5B984500ADADBD /* ResultCollectionViewCell.swift */,
 				EC4277152B5B9DDB00ADADBD /* Sort.swift */,
@@ -274,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				EC8FB8332B8A0397001F2EBD /* RealmModel.swift */,
+				EC8FB83A2B8A4076001F2EBD /* RealmRepository.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -402,6 +411,7 @@
 				EC6DF0F92B5948C200F7649A /* OnboardViewController.swift in Sources */,
 				ECF908112B5D3C2B00C5C2C7 /* SettingTableViewCell.swift in Sources */,
 				EC8FB82A2B89F34D001F2EBD /* NicknameView.swift in Sources */,
+				EC8FB83B2B8A4076001F2EBD /* RealmRepository.swift in Sources */,
 				EC8FB8342B8A0397001F2EBD /* RealmModel.swift in Sources */,
 				EC9A23FF2B67CE2F00F77D11 /* PointColorBorderImageView.swift in Sources */,
 				EC6DF0D52B5938A400F7649A /* AppDelegate.swift in Sources */,
@@ -424,8 +434,10 @@
 				EC4276E82B5A664900ADADBD /* NicknameState.swift in Sources */,
 				ECCE64DB2B597DD0000D5F83 /* Extensions.swift in Sources */,
 				ECBDD3C22B678CA1003C029C /* PointColorButton.swift in Sources */,
+				EC8FB83F2B8A54DA001F2EBD /* SearchView.swift in Sources */,
 				EC8FB82C2B89F80B001F2EBD /* Observable.swift in Sources */,
 				EC4277132B5B984500ADADBD /* ResultCollectionViewCell.swift in Sources */,
+				EC8FB8412B8B21C9001F2EBD /* ResultView.swift in Sources */,
 				EC6DF0D72B5938A400F7649A /* SceneDelegate.swift in Sources */,
 				EC42770A2B5B95ED00ADADBD /* ResultViewController.swift in Sources */,
 			);

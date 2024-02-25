@@ -13,6 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
+        let repository = RealmRepository()
         
         localNotificationToUser()
         
@@ -21,15 +22,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         
-        let nickname = UserDefaultsManager.shared.getStringValue(.nickname)
-        let profile = UserDefaultsManager.shared.getStringValue(.profile)
+        let allUser = repository.readAllUser()
+        print(repository.realm.configuration.fileURL!)
         
-        if nickname == "" || profile == "" {
+        if allUser.count == 0 {
             let nav = UINavigationController(rootViewController: OnboardViewController())
             
             window?.rootViewController = nav
             window?.makeKeyAndVisible()
-        } else {
+        }
+        
+        if let _ = allUser.first?.nickname, let _ = allUser.first?.profileImage {
             let tabBarController = UITabBarController()
             let searchViewController = UINavigationController(rootViewController: SearchViewController())
             let settingViewController = UINavigationController(rootViewController: SettingViewController())
@@ -42,6 +45,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tabBarController.setViewControllers([searchViewController, settingViewController], animated: true)
             
             window?.rootViewController = tabBarController
+            window?.makeKeyAndVisible()
+        } else {
+            let nav = UINavigationController(rootViewController: OnboardViewController())
+            
+            window?.rootViewController = nav
             window?.makeKeyAndVisible()
         }
     }

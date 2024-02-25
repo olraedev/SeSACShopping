@@ -7,13 +7,14 @@
 
 import UIKit
 import WebKit
+import RealmSwift
 
 class DetailViewController: UIViewController {
     let webView = WKWebView()
     
-    var itemTitle: String = ""
-    var productId: String = ""
-    var likeList: [String] = UserDefaultsManager.shared.getLikeList()
+    var product: NaverShoppingItem!
+    var likeList: List<LikeList>!
+    let repository = RealmRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,8 @@ class DetailViewController: UIViewController {
         designViews()
         designNavigationItem()
         configConstraints()
+        
+        likeList = repository.readUser().likeList
     }
 }
 
@@ -36,7 +39,7 @@ extension DetailViewController: ConfigConstraints {
 
 extension DetailViewController: DesignViews {
     func designViews() {
-        let urlString = "https://msearch.shopping.naver.com/product/\(productId)"
+        let urlString = "https://msearch.shopping.naver.com/product/\(product.productId)"
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
             
@@ -47,7 +50,7 @@ extension DetailViewController: DesignViews {
     func designNavigationItem() {
         let leftBarButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(leftBarButtonClicked))
         let rightButton = UIBarButtonItem(image: checkLikeList(), style: .plain, target: self, action: #selector(rightBarButtonClicked))
-        navigationItem.title = replaceTitle(itemTitle)
+        navigationItem.title = replaceTitle(product.title)
         navigationItem.leftBarButtonItem = leftBarButton
         navigationItem.rightBarButtonItem = rightButton
     }
@@ -59,48 +62,27 @@ extension DetailViewController: ConfigButtonClicked {
     }
     
     @objc func rightBarButtonClicked() {
-        if likeList.count == 0 {
-            print("add")
-            likeList.append(productId)
-            syncLikeList()
-        } else {
-            for idx in 0...likeList.count - 1 {
-                if productId == likeList[idx] {
-                    print("remove")
-                    likeList.remove(at: idx)
-                    syncLikeList()
-                    return
+        if let data = repository.realm.object(ofType: LikeList.self, forPrimaryKey: product.productId) {
+            do {
+                try repository.realm.write {
+                    self.repository.realm.delete(data)
                 }
+            } catch {
+                
             }
-            print("add2")
-            likeList.append(productId)
-            syncLikeList()
+        } else {
+            repository.appendLikeList(product)
         }
+        navigationItem.rightBarButtonItem?.image = checkLikeList()
     }
 }
 
 extension DetailViewController: MyDefinedFunctions {
-    func checkLikeList() -> UIImage {
-        if likeList.count == 0 {
-            return UIImage(systemName: "heart")!
+    func checkLikeList() -> UIImage? {
+        if let _ = repository.realm.object(ofType: LikeList.self, forPrimaryKey: product.productId) {
+            return UIImage(systemName: "heart.fill")
         } else {
-            for idx in 0...likeList.count - 1 {
-                if productId == likeList[idx] {
-                    return UIImage(systemName: "heart.fill")!
-                }
-            }
+            return UIImage(systemName: "heart")
         }
-        return UIImage(systemName: "heart")!
-    }
-    
-    func syncLikeList() {
-        UserDefaultsManager.shared.setLikeList(value: likeList)
-        likeList = UserDefaultsManager.shared.getLikeList()
-        if navigationItem.rightBarButtonItem?.image == UIImage(systemName: "heart") {
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
-        } else {
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
-        }
-        
     }
 }

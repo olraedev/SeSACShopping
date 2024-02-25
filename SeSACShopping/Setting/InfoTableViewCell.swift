@@ -8,10 +8,12 @@
 import UIKit
 
 class InfoTableViewCell: UITableViewCell {
+    
     let profileImageView = PointColorBorderImageView(frame: .zero)
     let nicknameLabel = UILabel()
     let likeLabel = UILabel()
     let textsLabel = UILabel()
+    let repository = RealmRepository()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -64,9 +66,10 @@ extension InfoTableViewCell {
     }
     
     func configCell() {
-        let profile = UserDefaultsManager.shared.getStringValue(.profile)
-        let nickname = UserDefaultsManager.shared.getStringValue(.nickname)
-        let likeList = UserDefaultsManager.shared.getLikeList()
+        let user = repository.readUser()
+        let profile = user.profileImage!
+        let nickname = user.nickname
+        let likeList = repository.readUser().likeList
         
         profileImageView.image = UIImage(named: profile)
         nicknameLabel.text = nickname

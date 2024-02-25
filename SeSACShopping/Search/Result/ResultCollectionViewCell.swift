@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 import Kingfisher
 
 class ResultCollectionViewCell: UICollectionViewCell {
@@ -14,6 +15,8 @@ class ResultCollectionViewCell: UICollectionViewCell {
     let mallNameLabel = UILabel()
     let titleLabel = UILabel()
     let priceLabel = UILabel()
+    
+    let repository = RealmRepository()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,7 +79,7 @@ extension ResultCollectionViewCell {
         priceLabel.font = FontDesign.mid.bold
     }
     
-    func configureCell(_ item: NaverShoppingItem, likeList: [String]) {
+    func configureCell(_ item: NaverShoppingItem) {
         let url = URL(string: item.image)
         
         itemImageView.kf.setImage(with: url)
@@ -84,7 +87,7 @@ extension ResultCollectionViewCell {
         titleLabel.text = replaceTitle(item.title)
         priceLabel.text = Int(item.lprice)!.formatted()
         
-        if likeList.contains(item.productId) {
+        if let item = repository.realm.object(ofType: LikeList.self, forPrimaryKey: item.productId) {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
             likeButton.setImage(UIImage(systemName: "heart"), for: .normal)

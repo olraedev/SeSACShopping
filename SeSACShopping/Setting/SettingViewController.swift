@@ -8,7 +8,10 @@
 import UIKit
 
 class SettingViewController: UIViewController {
+    
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
+    
+    let repository = RealmRepository()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +90,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath == IndexPath(row: Setting.allCases.count - 1, section: 1) {
             presentAlert(title: "처음부터 시작하기", message: "데이터를 모두 초기화하시겠습니까?", button: "확인") {
+                self.repository.deleteUser()
                 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                 let sceneDelegate = windowScene?.delegate as? SceneDelegate
                 let nav = UINavigationController(rootViewController: OnboardViewController())

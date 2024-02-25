@@ -9,10 +9,11 @@ import UIKit
 import SnapKit
 
 class ImageViewController: UIViewController {
-    lazy var selectImageView = PointColorBorderImageView(frame: .zero)
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: configCollectionViewLayout())
+    let selectImageView = PointColorBorderImageView(frame: .zero)
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: configCollectionViewLayout())
     
     var selectedImage: String = ""
+    var selectedImageClosure: ((String) -> Void)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +86,7 @@ extension ImageViewController: UICollectionViewDelegate, UICollectionViewDataSou
         collectionView.reloadData()
     }
     
-    func configCollectionViewLayout() -> UICollectionViewLayout{
+    static func configCollectionViewLayout() -> UICollectionViewLayout{
         let layout = UICollectionViewFlowLayout()
         let space: CGFloat = 8
         let deviceWidth = UIScreen.main.bounds.width
@@ -102,7 +103,7 @@ extension ImageViewController: UICollectionViewDelegate, UICollectionViewDataSou
 
 extension ImageViewController: ConfigButtonClicked {
     @objc func leftBarButtonClicked() {
-        UserDefaultsManager.shared.setStringValue(.profile, value: selectedImage)
+        selectedImageClosure(selectedImage)
         navigationController?.popViewController(animated: true)
     }
 }

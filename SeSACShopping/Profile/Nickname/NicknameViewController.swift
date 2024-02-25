@@ -11,7 +11,9 @@ class NicknameViewController: UIViewController {
     
     let nicknameView = NicknameView()
     let nicknameViewModel = NicknameViewModel()
-    var nowImage: String = ""
+    let repository = RealmRepository()
+    
+    var nowImage: String!
     
     override func loadView() {
         self.view = nicknameView
@@ -22,17 +24,7 @@ class NicknameViewController: UIViewController {
         
         designViews()
         designNavigationItem()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        let profile = UserDefaultsManager.shared.getStringValue(.profile)
-        
-        nowImage = profile.isEmpty ? Profile().returnRandomImage : profile
-        nicknameView.profileImageView.image = UIImage(named: nowImage)
-        
-        let nickname = UserDefaultsManager.shared.getStringValue(.nickname)
-        
-        nicknameView.inputTextField.text = nickname
+        configureProfileImageAndNickname()
     }
 }
 
@@ -40,12 +32,9 @@ extension NicknameViewController: DesignViews {
     func designViews() {
         var tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
         view.addGestureRecognizer(tapGesture)
-        
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileImageViewTapped))
         nicknameView.profileImageView.addGestureRecognizer(tapGesture)
-        
         nicknameView.inputTextField.delegate = self
-        
         nicknameView.completeButton.addTarget(self, action: #selector(completeButtonClicked), for: .touchUpInside)
     }
     
@@ -53,6 +42,22 @@ extension NicknameViewController: DesignViews {
         let leftBarButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(leftBarButtonClicked))
         navigationItem.title = "프로필 설정"
         navigationItem.leftBarButtonItem = leftBarButton
+    }
+    
+    func configureProfileImageAndNickname() {
+        let nowUser = repository.readUser()
+        
+        // 설정 - 프로필 수정
+        if let nickname = nowUser.nickname, let profileImage = nowUser.profileImage {
+            nicknameView.inputTextField.text = nickname
+            nowImage = profileImage
+            nicknameView.profileImageView.image = UIImage(named: profileImage)
+        }
+        // 초기화면 - 프로필 설정
+        else {
+            nowImage = Profile().returnRandomImage
+            nicknameView.profileImageView.image = UIImage(named: nowImage)
+        }
     }
 }
 
@@ -76,6 +81,10 @@ extension NicknameViewController: ConfigButtonClicked {
         let vc = ImageViewController()
         
         vc.selectedImage = nowImage
+        vc.selectedImageClosure = { image in
+            self.nowImage = image
+            self.nicknameView.profileImageView.image = UIImage(named: image)
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -87,8 +96,9 @@ extension NicknameViewController: ConfigButtonClicked {
         nicknameViewModel.inputNicknameText.value = nicknameView.inputTextField.text!
         nicknameViewModel.outputState.bind { state in
             if state == .available {
-                UserDefaultsManager.shared.setStringValue(.nickname, value: self.nicknameView.inputTextField.text!)
-                UserDefaultsManager.shared.setStringValue(.profile, value: self.nowImage)
+                self.repository.updateUser(id: self.repository.readUser().id,
+                                             nickname: self.nicknameView.inputTextField.text,
+                                             profileImage: self.nowImage!)
                 self.goToMainTabBarView()
             } else {
                 self.nicknameView.inputTextField.text = ""
