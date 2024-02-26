@@ -13,9 +13,6 @@ class User: Object {
     @Persisted var nickname: String?
     @Persisted var profileImage: String?
     
-    @Persisted var searchList: List<SearchList>
-    @Persisted var likeList: List<LikeList>
-    
     convenience init(nickname: String?, profileImage: String?) {
         self.init()
         self.nickname = nickname
@@ -25,8 +22,6 @@ class User: Object {
 
 class SearchList: Object {
     @Persisted(primaryKey: true) var name: String
-    
-    @Persisted(originProperty: "searchList") var user: LinkingObjects<User>
     
     convenience init(name: String) {
         self.init()
@@ -42,8 +37,6 @@ class LikeList: Object {
     @Persisted var lprice: String
     @Persisted var mallName: String
     @Persisted var like: Bool
-    
-    @Persisted(originProperty: "likeList") var user: LinkingObjects<User>
     
     convenience init(productId: String, title: String, link: String, image: String, lprice: String, mallName: String, like: Bool) {
         self.init()

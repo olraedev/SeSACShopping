@@ -17,7 +17,7 @@ class ResultViewController: UIViewController {
     let realm = try! Realm()
     var keyword: String = ""
     var list: NaverShoppingInfo = NaverShoppingInfo(total: 0, start: 0, display: 0, items: [])
-    var likeList: List<LikeList>!
+    var likeList: Results<LikeList>!
     var start: Int = 1
     var nowSort: Sort = .sim
     
@@ -36,7 +36,7 @@ class ResultViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        likeList = repository.readUser().likeList
+        likeList = repository.readAll(LikeList.self)
         resultView.collectionView.reloadData()
     }
 }

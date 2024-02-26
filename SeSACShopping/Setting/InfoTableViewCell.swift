@@ -69,7 +69,7 @@ extension InfoTableViewCell {
         let user = repository.readUser()
         let profile = user.profileImage!
         let nickname = user.nickname
-        let likeList = repository.readUser().likeList
+        let likeList = repository.readAll(LikeList.self)
         
         profileImageView.image = UIImage(named: profile)
         nicknameLabel.text = nickname

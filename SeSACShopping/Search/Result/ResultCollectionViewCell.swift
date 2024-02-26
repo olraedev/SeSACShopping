@@ -87,7 +87,7 @@ extension ResultCollectionViewCell {
         titleLabel.text = replaceTitle(item.title)
         priceLabel.text = Int(item.lprice)!.formatted()
         
-        if let item = repository.realm.object(ofType: LikeList.self, forPrimaryKey: item.productId) {
+        if let _ = repository.realm.object(ofType: LikeList.self, forPrimaryKey: item.productId) {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
             likeButton.setImage(UIImage(systemName: "heart"), for: .normal)

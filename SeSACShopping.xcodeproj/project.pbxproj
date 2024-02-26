@@ -43,6 +43,7 @@
 		EC8FB83B2B8A4076001F2EBD /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8FB83A2B8A4076001F2EBD /* RealmRepository.swift */; };
 		EC8FB83F2B8A54DA001F2EBD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8FB83E2B8A54DA001F2EBD /* SearchView.swift */; };
 		EC8FB8412B8B21C9001F2EBD /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8FB8402B8B21C8001F2EBD /* ResultView.swift */; };
+		EC96DAD02B8CC39C00732CF5 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC96DACF2B8CC39C00732CF5 /* SearchViewModel.swift */; };
 		EC9A23FF2B67CE2F00F77D11 /* PointColorBorderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9A23FE2B67CE2F00F77D11 /* PointColorBorderImageView.swift */; };
 		EC9A25422B7247C700F77D11 /* NicknameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9A25412B7247C700F77D11 /* NicknameError.swift */; };
 		EC9A25442B72533200F77D11 /* APISessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9A25432B72533200F77D11 /* APISessionManager.swift */; };
@@ -93,6 +94,7 @@
 		EC8FB83A2B8A4076001F2EBD /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 		EC8FB83E2B8A54DA001F2EBD /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		EC8FB8402B8B21C8001F2EBD /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		EC96DACF2B8CC39C00732CF5 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		EC9A23FE2B67CE2F00F77D11 /* PointColorBorderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointColorBorderImageView.swift; sourceTree = "<group>"; };
 		EC9A25412B7247C700F77D11 /* NicknameError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameError.swift; sourceTree = "<group>"; };
 		EC9A25432B72533200F77D11 /* APISessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISessionManager.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				EC4277062B5B95A700ADADBD /* Result */,
 				EC8FB83E2B8A54DA001F2EBD /* SearchView.swift */,
 				EC4277002B5AC5DB00ADADBD /* SearchViewController.swift */,
+				EC96DACF2B8CC39C00732CF5 /* SearchViewModel.swift */,
 				EC4277022B5AD96200ADADBD /* SearchTableViewCell.swift */,
 				EC12128F2B5FE25A00F6221D /* RecCollectionViewCell.swift */,
 				EC1212932B5FE34F00F6221D /* Recommendation.swift */,
@@ -411,6 +414,7 @@
 				EC6DF0F92B5948C200F7649A /* OnboardViewController.swift in Sources */,
 				ECF908112B5D3C2B00C5C2C7 /* SettingTableViewCell.swift in Sources */,
 				EC8FB82A2B89F34D001F2EBD /* NicknameView.swift in Sources */,
+				EC96DAD02B8CC39C00732CF5 /* SearchViewModel.swift in Sources */,
 				EC8FB83B2B8A4076001F2EBD /* RealmRepository.swift in Sources */,
 				EC8FB8342B8A0397001F2EBD /* RealmModel.swift in Sources */,
 				EC9A23FF2B67CE2F00F77D11 /* PointColorBorderImageView.swift in Sources */,

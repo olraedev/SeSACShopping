@@ -44,6 +44,7 @@ extension SearchView: DesignViews, ConfigConstraints {
         searchBar.tintColor = ColorDesign.text.fill
         searchBar.searchTextField.textColor = ColorDesign.text.fill
         
+        emptyView.isHidden = false
         emptyView.backgroundColor = ColorDesign.bgc.fill
         
         recLabel.text = "주인장의 추천 검색어"
@@ -60,6 +61,7 @@ extension SearchView: DesignViews, ConfigConstraints {
         emptyLabel.font = FontDesign.biggest.bold
         emptyLabel.textColor = ColorDesign.text.fill
         
+        recentView.isHidden = true
         recentView.backgroundColor = ColorDesign.bgc.fill
         
         recentLabel.text = "최근 검색"

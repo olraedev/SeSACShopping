@@ -9,7 +9,7 @@ import Foundation
 
 class Observable<T> {
     
-    var closure: ((T) -> Void)?
+    private var closure: ((T) -> Void)?
     
     var value: T {
         didSet {

@@ -13,7 +13,7 @@ class DetailViewController: UIViewController {
     let webView = WKWebView()
     
     var product: NaverShoppingItem!
-    var likeList: List<LikeList>!
+    var likeList: Results<LikeList>!
     let repository = RealmRepository()
     
     override func viewDidLoad() {
@@ -25,7 +25,7 @@ class DetailViewController: UIViewController {
         designNavigationItem()
         configConstraints()
         
-        likeList = repository.readUser().likeList
+        likeList = repository.readAll(LikeList.self)
     }
 }
 

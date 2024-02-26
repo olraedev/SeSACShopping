@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         
-        let allUser = repository.readAllUser()
+        let allUser = repository.readAll(User.self)
         print(repository.realm.configuration.fileURL!)
         
         if allUser.count == 0 {

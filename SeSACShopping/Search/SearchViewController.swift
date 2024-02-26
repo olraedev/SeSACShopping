@@ -6,17 +6,12 @@
 //
 
 import UIKit
-import SnapKit
 import RealmSwift
 
 class SearchViewController: UIViewController {
     
     let searchView = SearchView()
-    
-    let repository = RealmRepository()
-    let realm = try! Realm()
-    var searchList: List<SearchList>!
-    var recList: [String] = Recommendation().returnShuffledList
+    let viewModel = SearchViewModel()
     
     override func loadView() {
         self.view = searchView
@@ -25,31 +20,30 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchList = repository.readUser().searchList
         setBackgroundColor()
+        viewModel.inputViewDidLoad.value = ()
         designNavigationItem()
         designViews()
-        configTableView()
-        changeView()
-        configCollectionView()
+        bindData()
+    }
+    
+    func bindData() {
+        viewModel.searchList.bind { _ in
+            self.searchView.recentTableView.reloadData()
+        }
+        
+        viewModel.outputViewState.bind { state in
+            self.searchView.emptyView.isHidden = state
+            self.searchView.recentView.isHidden = !state
+        }
     }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if searchBar.text == "" {
-            view.endEditing(true)
-        } else {
-            guard let text = searchBar.text else {
-                return
-            }
-            repository.appendSearchList(text)
-            searchView.recentTableView.reloadData()
-            changeView()
-            pushResultViewController(keyword: searchBar.text!)
-            view.endEditing(true)
-            searchBar.text = ""
-        }
+        viewModel.inputSearchText.value = searchBar.text
+        pushResultViewController(keyword: searchBar.text)
+        view.endEditing(true)
     }
 }
 
@@ -57,30 +51,31 @@ extension SearchViewController: DesignViews {
     func designViews() {
         searchView.searchBar.delegate = self
         searchView.allEraseButton.addTarget(self, action: #selector(allEraseButtonClicked), for: .touchUpInside)
+        
+        searchView.recentTableView.delegate = self
+        searchView.recentTableView.dataSource = self
+        searchView.recentTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
+        
+        searchView.recCollectionView.dataSource = self
+        searchView.recCollectionView.delegate = self
+        searchView.recCollectionView.register(RecCollectionViewCell.self, forCellWithReuseIdentifier: RecCollectionViewCell.identifier)
     }
     
     func designNavigationItem() {
-        let nickname = repository.readUser().nickname!
-        navigationItem.title = "\(nickname)님의 새싹쇼핑"
+        navigationItem.title = "\(viewModel.nickname)님의 새싹쇼핑"
     }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-    func configTableView() {
-        searchView.recentTableView.delegate = self
-        searchView.recentTableView.dataSource = self
-        
-        searchView.recentTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchList.count
+        return viewModel.searchList.value!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = searchView.recentTableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as! SearchTableViewCell
         
-        cell.configureCell(searchList[indexPath.row].name, row: indexPath.row)
+        cell.configureCell(viewModel.searchList.value![indexPath.row].name, row: indexPath.row)
         cell.eraseButton.addTarget(self, action: #selector(cellEraseButtonClicked), for: .touchUpInside)
         cell.selectionStyle = .none
         
@@ -88,47 +83,28 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        pushResultViewController(keyword: searchList[indexPath.row].name)
+        pushResultViewController(keyword: viewModel.searchList.value![indexPath.row].name)
     }
 }
 
 extension SearchViewController: ConfigButtonClicked {
     @objc func allEraseButtonClicked() {
-        try! realm.write({
-            let list = realm.objects(SearchList.self)
-            realm.delete(list)
-        })
-        syncSearchList()
+        viewModel.inputAllEraseButtonTrigger.value = ()
     }
     
     @objc func cellEraseButtonClicked(_ sender: UIButton) {
-        try! realm.write({
-            let list = realm.object(ofType: SearchList.self, forPrimaryKey: searchList[sender.tag].name)
-            realm.delete(list!)
-        })
-        syncSearchList()
+        viewModel.inputCellEraseButton.value = sender.tag
     }
     
     @objc func recButtonClicked(_ sender: UIButton) {
-        repository.appendSearchList(recList[sender.tag])
-        syncSearchList()
-        pushResultViewController(keyword: recList[sender.tag])
+        viewModel.inputSearchText.value = viewModel.recList[sender.tag]
     }
 }
 
 extension SearchViewController: MyDefinedFunctions {
-    func changeView() {
-        searchView.emptyView.isHidden = !searchList.isEmpty
-        searchView.recentView.isHidden = searchList.isEmpty
-    }
     
-    func syncSearchList() {
-        repository.readUser().searchList = searchList
-        searchView.recentTableView.reloadData()
-        changeView()
-    }
-    
-    func pushResultViewController(keyword: String) {
+    func pushResultViewController(keyword: String?) {
+        guard let keyword else { return }
         // 검색 결과 화면으로 이동
         let vc = ResultViewController()
         vc.keyword = keyword
@@ -138,21 +114,15 @@ extension SearchViewController: MyDefinedFunctions {
 }
 
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func configCollectionView() {
-        searchView.recCollectionView.dataSource = self
-        searchView.recCollectionView.delegate = self
 
-        searchView.recCollectionView.register(RecCollectionViewCell.self, forCellWithReuseIdentifier: RecCollectionViewCell.identifier)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recList.count
+        return viewModel.recList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = searchView.recCollectionView.dequeueReusableCell(withReuseIdentifier: RecCollectionViewCell.identifier, for: indexPath) as! RecCollectionViewCell
         
-        cell.configureCell(recList[indexPath.item], row: indexPath.item)
+        cell.configureCell(viewModel.recList[indexPath.item], row: indexPath.item)
         cell.recButton.addTarget(self, action: #selector(recButtonClicked), for: .touchUpInside)
         
         return cell

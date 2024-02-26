@@ -24,29 +24,23 @@ class RealmRepository {
     }
     
     func appendSearchList(_ name: String) {
-        var flag = true
-        let user = readUser()
-        
-        user.searchList.forEach { value in
-            if name == value.name {
-                flag = false
+        if readAll(SearchList.self).filter({ $0.name == name }).count > 0 {
+            return
+        } else {
+            do {
+                try realm.write {
+                    realm.add(SearchList(name: name))
+                }
+            } catch {
+                print("append searchList Error")
             }
-        }
-        if flag == false { return }
-        do {
-            try realm.write {
-                user.searchList.append(SearchList(name: name))
-            }
-        } catch {
-            print("append searchList Error")
         }
     }
     
     func appendLikeList(_ item: NaverShoppingItem) {
-        let user = readUser()
         do {
             try realm.write {
-                user.likeList.append(LikeList(productId: item.productId, title: item.title, link: item.link, image: item.image, lprice: item.lprice, mallName: item.mallName, like: true))
+                realm.add(LikeList(productId: item.productId, title: item.title, link: item.link, image: item.image, lprice: item.lprice, mallName: item.mallName, like: true))
             }
         } catch {
             print("append searchList Error")
@@ -54,12 +48,16 @@ class RealmRepository {
     }
     
     // Read
-    func readAllUser() -> Results<User> {
-        return realm.objects(User.self)
+    func readAll<T: Object>(_ type: T.Type) -> Results<T> {
+        return realm.objects(T.self)
     }
     
     func readUser() -> User {
-        return readAllUser().first!
+        return readAll(User.self).first!
+    }
+    
+    func readForPrimaryKey<T: Object>(_ type: T.Type, name: String) -> T? {
+        realm.object(ofType: T.self, forPrimaryKey: name)
     }
     
     // Update
@@ -73,13 +71,23 @@ class RealmRepository {
         }
     }
     
-    func updateSearchList() {
+    func deleteAllSearchList() {
         do {
             try realm.write {
-                readUser().searchList.removeAll()
+                realm.delete(readAll(SearchList.self))
             }
         } catch {
             print("사용자 정보 업데이트 실패")
+        }
+    }
+    
+    func deleteSearchList(_ object: ObjectBase) {
+        do {
+            try realm.write {
+                realm.delete(object)
+            }
+        } catch {
+            print("삭제 실패")
         }
     }
     
