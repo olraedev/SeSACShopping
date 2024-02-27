@@ -24,16 +24,16 @@ class RealmRepository {
     }
     
     func appendSearchList(_ name: String) {
-        if readAll(SearchList.self).filter({ $0.name == name }).count > 0 {
-            return
-        } else {
-            do {
-                try realm.write {
-                    realm.add(SearchList(name: name))
-                }
-            } catch {
-                print("append searchList Error")
+        if let value = readForPrimaryKey(SearchList.self, name: name) {
+            // 순서 바꿔야하는디
+            deleteSearchList(value)
+        }
+        do {
+            try realm.write {
+                realm.add(SearchList(name: name))
             }
+        } catch {
+            print("append searchList Error")
         }
     }
     
@@ -48,8 +48,8 @@ class RealmRepository {
     }
     
     // Read
-    func readAll<T: Object>(_ type: T.Type) -> Results<T> {
-        return realm.objects(T.self)
+    func readAll<T: Object>(_ type: T.Type) -> [T] {
+        return Array(realm.objects(T.self))
     }
     
     func readUser() -> User {

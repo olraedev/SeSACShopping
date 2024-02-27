@@ -17,7 +17,7 @@ class ResultViewController: UIViewController {
     let realm = try! Realm()
     var keyword: String = ""
     var list: NaverShoppingInfo = NaverShoppingInfo(total: 0, start: 0, display: 0, items: [])
-    var likeList: Results<LikeList>!
+    var likeList: [LikeList] = []
     var start: Int = 1
     var nowSort: Sort = .sim
     

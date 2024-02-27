@@ -22,7 +22,7 @@ class SearchViewModel {
     var inputSearchText: Observable<String?> = Observable(nil)
     
     var outputViewState = Observable(false)
-    var searchList: Observable<Results<SearchList>?> = Observable(nil)
+    var searchList: Observable<[SearchList]> = Observable([])
     
     init() {
         inputViewDidLoad.bind { _ in self.fetch() }
@@ -35,12 +35,13 @@ class SearchViewModel {
         searchList.value = repository.readAll(SearchList.self)
         recList = recommendation.returnShuffledList
         nickname = repository.readUser().nickname!
+        stateChange()
     }
     
     private func appendSearchList(_ text: String?) {
         guard let text else { return }
         repository.appendSearchList(text)
-        searchList.value = repository.readAll(SearchList.self)
+        searchList.value = repository.readAll(SearchList.self).reversed()
         stateChange()
     }
     
@@ -53,19 +54,13 @@ class SearchViewModel {
     
     private func cellErase(_ value: Int?) {
         guard let value else { return }
-        guard let searchListValue = searchList.value else { return }
 
-        repository.deleteSearchList(searchListValue[value])
+        repository.deleteSearchList(searchList.value[value])
         searchList.value = repository.readAll(SearchList.self)
         stateChange()
     }
     
     private func stateChange() {
-        guard let searchListValue = searchList.value else {
-            print(#function)
-            outputViewState.value = false
-            return
-        }
-        outputViewState.value = searchListValue.count > 0 ? true : false
+        outputViewState.value = searchList.value.count > 0 ? true : false
     }
 }

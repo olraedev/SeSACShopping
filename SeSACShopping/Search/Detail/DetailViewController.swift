@@ -13,7 +13,7 @@ class DetailViewController: UIViewController {
     let webView = WKWebView()
     
     var product: NaverShoppingItem!
-    var likeList: Results<LikeList>!
+    var likeList: [LikeList] = []
     let repository = RealmRepository()
     
     override func viewDidLoad() {

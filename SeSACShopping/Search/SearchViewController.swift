@@ -69,13 +69,13 @@ extension SearchViewController: DesignViews {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.searchList.value!.count
+        return viewModel.searchList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = searchView.recentTableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as! SearchTableViewCell
         
-        cell.configureCell(viewModel.searchList.value![indexPath.row].name, row: indexPath.row)
+        cell.configureCell(viewModel.searchList.value[indexPath.row].name, row: indexPath.row)
         cell.eraseButton.addTarget(self, action: #selector(cellEraseButtonClicked), for: .touchUpInside)
         cell.selectionStyle = .none
         
@@ -83,7 +83,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        pushResultViewController(keyword: viewModel.searchList.value![indexPath.row].name)
+        pushResultViewController(keyword: viewModel.searchList.value[indexPath.row].name)
     }
 }
 
