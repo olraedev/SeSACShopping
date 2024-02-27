@@ -98,6 +98,7 @@ extension SearchViewController: ConfigButtonClicked {
     
     @objc func recButtonClicked(_ sender: UIButton) {
         viewModel.inputSearchText.value = viewModel.recList[sender.tag]
+        pushResultViewController(keyword: viewModel.recList[sender.tag])
     }
 }
 
