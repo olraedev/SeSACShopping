@@ -140,22 +140,11 @@ extension ResultViewController: UICollectionViewDataSourcePrefetching {
         for item in indexPaths {
             if list.items.count - 3 == item.row {
                 start += 30
-                APISessionManager.shared.requestToNaverShopping(query: keyword, display: 30, start: start, sort: nowSort.rawValue) { info, error in
-                    if let error = error {
-                        switch error {
-                        case .failedRequest: self.presentAlert(title: "네트워크 오류", message: NaverShoppingError.failedRequest.errorMessage)
-                        case .invalidResponse: self.presentAlert(title: "네트워크 오류", message: NaverShoppingError.invalidResponse.errorMessage)
-                        case .noData: self.presentAlert(title: "네트워크 오류", message: NaverShoppingError.noData.errorMessage)
-                        }
-                    } else {
-                        guard let info else {
-                            self.presentAlert(title: "네트워크 오류", message: "잠시 후 다시 시도해주세요.")
-                            return
-                        }
-                        self.list.items.append(contentsOf: info.items)
-                        self.resultView.collectionView.reloadData()
-                    }
+                Task {
+                    let result = try await APISessionManager.shared.requestToNaverShoppingAsyncAwait(query: keyword, display: 30, start: start, sort: nowSort.rawValue)
                     
+                    self.list.items.append(contentsOf: result.items)
+                    self.resultView.collectionView.reloadData()
                 }
             }
         }
@@ -168,10 +157,16 @@ extension ResultViewController: UICollectionViewDataSourcePrefetching {
 
 extension ResultViewController: MyDefinedFunctions {
     func requestToNaverShopping(start: Int, sort: String) {
-        APIManager().requestNaverShopping(query: keyword, display: 30, start: start, sort: sort) { info in
-            self.resultView.totalLabel.text = "\(info.total.formatted()) 개의 검색 결과"
-            self.list = info
-            self.resultView.collectionView.reloadData()
+        Task {
+            let result = try await APISessionManager.shared.requestToNaverShoppingAsyncAwait(query: keyword, display: 30, start: start, sort: sort)
+            resultView.totalLabel.text = "\(result.total.formatted()) 개의 검색 결과"
+            list = result
+            resultView.collectionView.reloadData()
         }
+        // APIManager().requestNaverShopping(query: keyword, display: 30, start: start, sort: sort) { info in
+        //     self.resultView.totalLabel.text = "\(info.total.formatted()) 개의 검색 결과"
+        //     self.list = info
+        //     self.resultView.collectionView.reloadData()
+        // }
     }
 }
